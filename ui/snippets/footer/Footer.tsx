@@ -1,5 +1,5 @@
 import type { GridProps, HTMLChakraProps } from '@chakra-ui/react';
-import { Box, Grid, Flex, Text, Link, VStack, Skeleton, useColorModeValue } from '@chakra-ui/react';
+import { Box, Flex, Grid, Link, Skeleton, Text, useColorModeValue, VStack } from '@chakra-ui/react';
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 
@@ -12,7 +12,6 @@ import useFetch from 'lib/hooks/useFetch';
 import useIssueUrl from 'lib/hooks/useIssueUrl';
 import { copy } from 'lib/html-entities';
 import IconSvg from 'ui/shared/IconSvg';
-import { CONTENT_MAX_WIDTH } from 'ui/shared/layout/utils';
 import NetworkAddToWallet from 'ui/shared/NetworkAddToWallet';
 
 import FooterLinkItem from './FooterLinkItem';
@@ -166,7 +165,6 @@ const Footer = () => {
     py: { base: 4, lg: 8 },
     gridTemplateColumns: { base: '1fr', lg: 'minmax(auto, 470px) 1fr' },
     columnGap: { lg: '32px', xl: '100px' },
-    maxW: `${ CONTENT_MAX_WIDTH }px`,
     m: '0 auto',
   };
 

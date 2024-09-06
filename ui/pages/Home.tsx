@@ -22,7 +22,7 @@ const Home = () => {
         w="100%"
         background={ config.UI.homepage.plate.background }
         borderRadius="md"
-        p={{ base: 4, lg: 8 }}
+        p={{ base: 6, lg: 12 }}
         columnGap={ 8 }
         alignItems="center"
         data-label="hero plate"
@@ -31,9 +31,10 @@ const Home = () => {
           <Flex mb={{ base: 2, lg: 3 }} justifyContent="space-between" alignItems="center" columnGap={ 2 }>
             <Heading
               as="h1"
-              fontSize={{ base: '18px', lg: '30px' }}
-              lineHeight={{ base: '24px', lg: '36px' }}
-              fontWeight={{ base: 500, lg: 700 }}
+              fontSize={{ base: '24px', lg: '40px' }}
+              lineHeight={{ base: '24px', lg: '50px' }}
+              fontWeight={{ base: 'inherit', lg: '500' }}
+              letterSpacing={{ base: '-1px', lg: '-1px' }}
               color={ config.UI.homepage.plate.textColor }
             >
               {
@@ -49,11 +50,21 @@ const Home = () => {
               </Box>
             ) }
           </Flex>
+          <Heading
+            as="h2"
+            fontSize={{ base: '14px', lg: '18px' }}
+            lineHeight={{ base: '20px', lg: '24px' }}
+            fontWeight={{ base: 500 }}
+            mb={{ base: 6 }}
+            color={ config.UI.homepage.plate.textColor }
+          >
+            Shaping Tomorrow, Steering the Blockchain Revolution with Accuracy and Vision.
+          </Heading>
           <SearchBar isHomepage/>
         </Box>
         <AdBanner platform="mobile" w="fit-content" flexShrink={ 0 } borderRadius="md" overflow="hidden" display={{ base: 'none', lg: 'block ' }}/>
       </Flex>
-      <Flex flexDir={{ base: 'column', lg: 'row' }} columnGap={ 2 } rowGap={ 1 } mt={ 3 } _empty={{ mt: 0 }}>
+      <Flex flexDir={{ base: 'column', lg: 'column' }} columnGap={ 2 } rowGap={ 3 } mt={ 3 } _empty={{ mt: 0 }}>
         <Stats/>
         <ChainIndicators/>
       </Flex>

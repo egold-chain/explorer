@@ -88,7 +88,7 @@ const SearchBarInput = (
       transitionDuration="normal"
       transitionTimingFunction="ease"
     >
-      <InputGroup size={{ base: 'sm', lg: isHomepage ? 'sm_md' : 'sm' }}>
+      <InputGroup size={{ base: 'md' }}>
         <InputLeftElement w={{ base: isHomepage ? 6 : 4, lg: 6 }} ml={{ base: isHomepage ? 4 : 3, lg: 4 }} h="100%">
           <IconSvg name="search" boxSize={{ base: isHomepage ? 6 : 4, lg: 6 }} color={ useColorModeValue('blackAlpha.600', 'whiteAlpha.600') }/>
         </InputLeftElement>
@@ -112,7 +112,7 @@ const SearchBarInput = (
           value={ value }
         />
         { value && (
-          <InputRightElement top={{ base: 2, lg: isHomepage ? 3 : 2 }} right={ 2 }>
+          <InputRightElement top={{ base: 5 }} right={ 3 }>
             <ClearButton onClick={ onClear }/>
           </InputRightElement>
         ) }

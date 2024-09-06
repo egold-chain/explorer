@@ -54,7 +54,7 @@ const ChainIndicators = () => {
     }
 
     return (
-      <Text fontWeight={ 700 } fontSize="30px" lineHeight="36px">
+      <Text fontSize={{ base: '48px' }} fontWeight={{ base: 600 }} lineHeight={{ base: '48px' }}>
         { indicator?.value(statsQueryResult.data) }
       </Text>
     );
@@ -82,8 +82,7 @@ const ChainIndicators = () => {
 
   return (
     <Flex
-      px={{ base: 3, lg: 4 }}
-      py={ 3 }
+      p={ 8 }
       borderRadius="base"
       bgColor={ bgColor }
       columnGap={{ base: 3, lg: 4 }}
@@ -94,10 +93,10 @@ const ChainIndicators = () => {
     >
       <Flex flexGrow={ 1 } flexDir="column">
         <Flex alignItems="center">
-          <Text fontWeight={ 500 }>{ indicator?.title }</Text>
+          <Text fontSize={{ base: 'lg' }} fontWeight={ 500 }>{ indicator?.title }</Text>
           { indicator?.hint && <Hint label={ indicator.hint } ml={ 1 }/> }
         </Flex>
-        <Flex mb={{ base: 0, lg: 2 }} mt={ 1 } alignItems="end">
+        <Flex mb={{ base: 0, lg: 4 }} mt={ 3 } alignItems="end">
           { valueTitle }
           { valueDiff }
         </Flex>

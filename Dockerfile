@@ -37,8 +37,8 @@ RUN apk add --no-cache --upgrade libc6-compat bash
 # pass build args to env variables
 ARG GIT_COMMIT_SHA
 ENV NEXT_PUBLIC_GIT_COMMIT_SHA=$GIT_COMMIT_SHA
-ARG GIT_TAG
-ENV NEXT_PUBLIC_GIT_TAG=$GIT_TAG
+#ARG GIT_TAG
+#ENV NEXT_PUBLIC_GIT_TAG=$GIT_TAG
 ARG NEXT_OPEN_TELEMETRY_ENABLED
 ENV NEXT_OPEN_TELEMETRY_ENABLED=$NEXT_OPEN_TELEMETRY_ENABLED
 
@@ -72,7 +72,7 @@ RUN cd ./deploy/tools/feature-reporter && yarn build
 
 
 ### ENV VARIABLES CHECKER
-# Copy dependencies and source code, then build 
+# Copy dependencies and source code, then build
 COPY --from=deps /envs-validator/node_modules ./deploy/tools/envs-validator/node_modules
 RUN cd ./deploy/tools/envs-validator && yarn build
 
