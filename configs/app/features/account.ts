@@ -5,7 +5,9 @@ import stripTrailingSlash from 'lib/stripTrailingSlash';
 import app from '../app';
 import { getEnvValue } from '../utils';
 
-const authUrl = stripTrailingSlash(getEnvValue('NEXT_PUBLIC_AUTH_URL') || app.baseUrl);
+const authUrl = stripTrailingSlash(
+  getEnvValue('NEXT_PUBLIC_AUTH_URL') || app.baseUrl,
+);
 
 const logoutUrl = (() => {
   try {
@@ -37,7 +39,7 @@ const config: Feature<{ authUrl: string; logoutUrl: string }> = (() => {
   ) {
     return Object.freeze({
       title,
-      isEnabled: true,
+      isEnabled: false,
       authUrl,
       logoutUrl,
     });

@@ -28,7 +28,12 @@ const Home = () => {
         data-label="hero plate"
       >
         <Box flexGrow={ 1 }>
-          <Flex mb={{ base: 2, lg: 3 }} justifyContent="space-between" alignItems="center" columnGap={ 2 }>
+          <Flex
+            mb={{ base: 2, lg: 3 }}
+            justifyContent="space-between"
+            alignItems="center"
+            columnGap={ 2 }
+          >
             <Heading
               as="h1"
               fontSize={{ base: '24px', lg: '40px' }}
@@ -37,16 +42,18 @@ const Home = () => {
               letterSpacing={{ base: '-1px', lg: '-1px' }}
               color={ config.UI.homepage.plate.textColor }
             >
-              {
-                config.meta.seo.enhancedDataEnabled ?
-                  `${ config.chain.name } blockchain explorer` :
-                  `${ config.chain.name } explorer`
-              }
+              { config.meta.seo.enhancedDataEnabled ?
+                `${ config.chain.name } blockchain explorer` :
+                `${ config.chain.name } explorer` }
             </Heading>
             { config.UI.navigation.layout === 'vertical' && (
               <Box display={{ base: 'none', lg: 'flex' }}>
-                { config.features.account.isEnabled && <ProfileMenuDesktop isHomePage/> }
-                { config.features.blockchainInteraction.isEnabled && <WalletMenuDesktop isHomePage/> }
+                { config.features.account.isEnabled && (
+                  <ProfileMenuDesktop isHomePage/>
+                ) }
+                { config.features.blockchainInteraction.isEnabled && (
+                  <WalletMenuDesktop isHomePage/>
+                ) }
               </Box>
             ) }
           </Flex>
@@ -58,21 +65,52 @@ const Home = () => {
             mb={{ base: 6 }}
             color={ config.UI.homepage.plate.textColor }
           >
-            Shaping Tomorrow, Steering the Blockchain Revolution with Accuracy and Vision.
+            Shaping Tomorrow, Steering the Blockchain Revolution with Accuracy
+            and Vision.
           </Heading>
           <SearchBar isHomepage/>
         </Box>
-        <AdBanner platform="mobile" w="fit-content" flexShrink={ 0 } borderRadius="md" overflow="hidden" display={{ base: 'none', lg: 'block ' }}/>
+        <AdBanner
+          platform="mobile"
+          w="fit-content"
+          flexShrink={ 0 }
+          borderRadius="md"
+          overflow="hidden"
+          display={{ base: 'none', lg: 'block ' }}
+        />
       </Flex>
-      <Flex flexDir={{ base: 'column', lg: 'column' }} columnGap={ 2 } rowGap={ 3 } mt={ 3 } _empty={{ mt: 0 }}>
+      <Flex
+        flexDir={{ base: 'column', lg: 'column' }}
+        columnGap={ 2 }
+        rowGap={ 3 }
+        mt={ 3 }
+        _empty={{ mt: 0 }}
+      >
         <Stats/>
         <ChainIndicators/>
       </Flex>
-      <AdBanner mt={ 6 } mx="auto" display={{ base: 'flex', lg: 'none' }} justifyContent="center"/>
-      <Flex mt={ 8 } direction={{ base: 'column', lg: 'row' }} columnGap={ 12 } rowGap={ 6 }>
-        { rollupFeature.isEnabled && rollupFeature.type === 'zkEvm' && <LatestZkEvmL2Batches/> }
-        { rollupFeature.isEnabled && rollupFeature.type === 'arbitrum' && <LatestArbitrumL2Batches/> }
-        { !(rollupFeature.isEnabled && (rollupFeature.type === 'arbitrum' || rollupFeature.type === 'zkEvm')) && <LatestBlocks/> }
+      <AdBanner
+        mt={ 6 }
+        mx="auto"
+        display={{ base: 'flex', lg: 'none' }}
+        justifyContent="center"
+      />
+      <Flex
+        mt={ 8 }
+        direction={{ base: 'column', lg: 'row' }}
+        columnGap={ 12 }
+        rowGap={ 6 }
+      >
+        { rollupFeature.isEnabled && rollupFeature.type === 'zkEvm' && (
+          <LatestZkEvmL2Batches/>
+        ) }
+        { rollupFeature.isEnabled && rollupFeature.type === 'arbitrum' && (
+          <LatestArbitrumL2Batches/>
+        ) }
+        { !(
+          rollupFeature.isEnabled &&
+          (rollupFeature.type === 'arbitrum' || rollupFeature.type === 'zkEvm')
+        ) && <LatestBlocks/> }
         <Box flexGrow={ 1 }>
           <Transactions/>
         </Box>

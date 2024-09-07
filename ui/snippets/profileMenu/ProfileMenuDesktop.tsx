@@ -1,5 +1,13 @@
 import type { IconButtonProps } from '@chakra-ui/react';
-import { PopoverContent, PopoverBody, PopoverTrigger, IconButton, Tooltip, Box, chakra } from '@chakra-ui/react';
+import {
+  PopoverContent,
+  PopoverBody,
+  PopoverTrigger,
+  IconButton,
+  Tooltip,
+  Box,
+  chakra,
+} from '@chakra-ui/react';
 import React from 'react';
 
 import useFetchProfileInfo from 'lib/hooks/useFetchProfileInfo';
@@ -18,10 +26,16 @@ type Props = {
   buttonBoxSize?: string;
 };
 
-const ProfileMenuDesktop = ({ isHomePage, className, fallbackIconSize, buttonBoxSize }: Props) => {
+const ProfileMenuDesktop = ({
+  isHomePage,
+  className,
+  fallbackIconSize,
+  buttonBoxSize,
+}: Props) => {
   const { data, error, isPending } = useFetchProfileInfo();
   const loginUrl = useLoginUrl();
-  const { themedBackground, themedBorderColor, themedColor } = useMenuButtonColors();
+  const { themedBackground, themedBorderColor, themedColor } =
+    useMenuButtonColors();
   const [ hasMenu, setHasMenu ] = React.useState(false);
 
   React.useEffect(() => {
@@ -54,17 +68,18 @@ const ProfileMenuDesktop = ({ isHomePage, className, fallbackIconSize, buttonBox
     if (hasMenu) {
       return 'subtle';
     }
-    return isHomePage ? 'solid' : 'outline';
-  }, [ hasMenu, isHomePage ]);
+    return 'outline';
+  }, [ hasMenu ]);
 
   let iconButtonStyles: Partial<IconButtonProps> = {};
   if (hasMenu) {
     iconButtonStyles = {
-      bg: isHomePage ? 'blue.50' : themedBackground,
+      bg: themedBackground,
     };
   } else if (isHomePage) {
     iconButtonStyles = {
       color: 'white',
+      borderColor: 'white',
     };
   } else {
     iconButtonStyles = {
@@ -76,7 +91,13 @@ const ProfileMenuDesktop = ({ isHomePage, className, fallbackIconSize, buttonBox
   return (
     <Popover openDelay={ 300 } placement="bottom-end" gutter={ 10 } isLazy>
       <Tooltip
-        label={ <span>Sign in to My Account to add tags,<br/>create watchlists, access API keys and more</span> }
+        label={ (
+          <span>
+            Sign in to My Account to add tags,
+            <br/>
+            create watchlists, access API keys and more
+          </span>
+        ) }
         textAlign="center"
         padding={ 2 }
         isDisabled={ hasMenu }
@@ -87,7 +108,9 @@ const ProfileMenuDesktop = ({ isHomePage, className, fallbackIconSize, buttonBox
             <IconButton
               className={ className }
               aria-label="profile menu"
-              icon={ <UserAvatar size={ 20 } fallbackIconSize={ fallbackIconSize }/> }
+              icon={
+                <UserAvatar size={ 20 } fallbackIconSize={ fallbackIconSize }/>
+              }
               variant={ variant }
               colorScheme="blue"
               boxSize={ buttonBoxSize ?? '40px' }
