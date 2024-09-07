@@ -10,70 +10,36 @@ declare module 'yup' {
 import * as yup from 'yup';
 
 import type { AdButlerConfig } from '../../../types/client/adButlerConfig';
-import {
-  SUPPORTED_AD_TEXT_PROVIDERS,
-  SUPPORTED_AD_BANNER_PROVIDERS,
-  SUPPORTED_AD_BANNER_ADDITIONAL_PROVIDERS,
-} from '../../../types/client/adProviders';
-import type {
-  AdTextProviders,
-  AdBannerProviders,
-  AdBannerAdditionalProviders,
-} from '../../../types/client/adProviders';
-import {
-  SMART_CONTRACT_EXTRA_VERIFICATION_METHODS,
-  type ContractCodeIde,
-  type SmartContractVerificationMethodExtra,
-} from '../../../types/client/contract';
+import type { AdBannerAdditionalProviders, AdBannerProviders, AdTextProviders } from '../../../types/client/adProviders';
+import { SUPPORTED_AD_BANNER_ADDITIONAL_PROVIDERS, SUPPORTED_AD_BANNER_PROVIDERS, SUPPORTED_AD_TEXT_PROVIDERS } from '../../../types/client/adProviders';
+import { type ContractCodeIde, SMART_CONTRACT_EXTRA_VERIFICATION_METHODS, type SmartContractVerificationMethodExtra } from '../../../types/client/contract';
 import type { DeFiDropdownItem } from '../../../types/client/deFiDropdown';
 import type { GasRefuelProviderConfig } from '../../../types/client/gasRefuelProviderConfig';
-import { GAS_UNITS } from '../../../types/client/gasTracker';
 import type { GasUnit } from '../../../types/client/gasTracker';
-import type {
-  MarketplaceAppOverview,
-  MarketplaceAppSecurityReportRaw,
-  MarketplaceAppSecurityReport,
-} from '../../../types/client/marketplace';
+import { GAS_UNITS } from '../../../types/client/gasTracker';
+import type { MarketplaceAppOverview, MarketplaceAppSecurityReport, MarketplaceAppSecurityReportRaw } from '../../../types/client/marketplace';
 import type { MultichainProviderConfig } from '../../../types/client/multichainProviderConfig';
+import type { NavigationLayout, NavigationLinkId, NavItemExternal } from '../../../types/client/navigation';
 import { NAVIGATION_LINK_IDS } from '../../../types/client/navigation';
-import type {
-  NavItemExternal,
-  NavigationLinkId,
-  NavigationLayout,
-} from '../../../types/client/navigation';
 import { ROLLUP_TYPES } from '../../../types/client/rollup';
-import type {
-  BridgedTokenChain,
-  TokenBridge,
-} from '../../../types/client/token';
+import type { BridgedTokenChain, TokenBridge } from '../../../types/client/token';
 import { PROVIDERS as TX_INTERPRETATION_PROVIDERS } from '../../../types/client/txInterpretation';
-import { VALIDATORS_CHAIN_TYPE } from '../../../types/client/validators';
 import type { ValidatorsChainType } from '../../../types/client/validators';
+import { VALIDATORS_CHAIN_TYPE } from '../../../types/client/validators';
 import type { WalletType } from '../../../types/client/wallets';
 import { SUPPORTED_WALLETS } from '../../../types/client/wallets';
 import type { CustomLink, CustomLinksGroup } from '../../../types/footerLinks';
-import { CHAIN_INDICATOR_IDS } from '../../../types/homepage';
 import type { ChainIndicatorId } from '../../../types/homepage';
-import {
-  type NetworkVerificationTypeEnvs,
-  type NetworkExplorer,
-  type FeaturedNetwork,
-  NETWORK_GROUPS,
-} from '../../../types/networks';
+import { CHAIN_INDICATOR_IDS } from '../../../types/homepage';
+import { type FeaturedNetwork, NETWORK_GROUPS, type NetworkExplorer, type NetworkVerificationTypeEnvs } from '../../../types/networks';
 import { COLOR_THEME_IDS } from '../../../types/settings';
 import type { AddressViewId } from '../../../types/views/address';
-import {
-  ADDRESS_VIEWS_IDS,
-  IDENTICON_TYPES,
-} from '../../../types/views/address';
-import { BLOCK_FIELDS_IDS } from '../../../types/views/block';
+import { ADDRESS_VIEWS_IDS, IDENTICON_TYPES } from '../../../types/views/address';
 import type { BlockFieldId } from '../../../types/views/block';
+import { BLOCK_FIELDS_IDS } from '../../../types/views/block';
 import type { NftMarketplaceItem } from '../../../types/views/nft';
 import type { TxAdditionalFieldsId, TxFieldsId } from '../../../types/views/tx';
-import {
-  TX_ADDITIONAL_FIELDS_IDS,
-  TX_FIELDS_IDS,
-} from '../../../types/views/tx';
+import { TX_ADDITIONAL_FIELDS_IDS, TX_FIELDS_IDS } from '../../../types/views/tx';
 
 import { replaceQuotes } from '../../../configs/app/utils';
 import * as regexp from '../../../lib/regexp';
@@ -93,7 +59,8 @@ const urlTest: yup.TestConfig = {
         new URL(value);
         return true;
       }
-    } catch (error) {}
+    } catch (error) {
+    }
 
     return false;
   },
@@ -127,7 +94,7 @@ const marketplaceAppSchema: yup.ObjectSchema<MarketplaceAppOverview> =
   });
 
 const issueSeverityDistributionSchema: yup.ObjectSchema<
-MarketplaceAppSecurityReport['overallInfo']['issueSeverityDistribution']
+  MarketplaceAppSecurityReport['overallInfo']['issueSeverityDistribution']
 > = yup.object({
   critical: yup.number().required(),
   gas: yup.number().required(),
@@ -138,7 +105,7 @@ MarketplaceAppSecurityReport['overallInfo']['issueSeverityDistribution']
 });
 
 const solidityscanReportSchema: yup.ObjectSchema<
-MarketplaceAppSecurityReport['contractsData'][number]['solidityScanReport']
+  MarketplaceAppSecurityReport['contractsData'][number]['solidityScanReport']
 > = yup.object({
   contractname: yup.string().required(),
   scan_status: yup.string().required(),
@@ -156,7 +123,7 @@ MarketplaceAppSecurityReport['contractsData'][number]['solidityScanReport']
 });
 
 const contractDataSchema: yup.ObjectSchema<
-MarketplaceAppSecurityReport['contractsData'][number]
+  MarketplaceAppSecurityReport['contractsData'][number]
 > = yup.object({
   address: yup.string().required(),
   isVerified: yup.boolean().required(),
@@ -435,40 +402,40 @@ const sentrySchema = yup.object().shape({
   }),
 });
 
-// const accountSchema = yup.object().shape({
-//   NEXT_PUBLIC_IS_ACCOUNT_SUPPORTED: yup.boolean(),
-//   NEXT_PUBLIC_AUTH0_CLIENT_ID: yup
-//     .string()
-//     .when("NEXT_PUBLIC_IS_ACCOUNT_SUPPORTED", {
-//       is: (value: boolean) => value,
-//       then: (schema) => schema.required(),
-//       otherwise: (schema) =>
-//         schema.max(
-//           -1,
-//           'NEXT_PUBLIC_AUTH0_CLIENT_ID cannot not be used if NEXT_PUBLIC_IS_ACCOUNT_SUPPORTED is not set to "true"'
-//         ),
-//     }),
-//   NEXT_PUBLIC_AUTH_URL: yup.string().when("NEXT_PUBLIC_IS_ACCOUNT_SUPPORTED", {
-//     is: (value: boolean) => value,
-//     then: (schema) => schema.test(urlTest),
-//     otherwise: (schema) =>
-//       schema.max(
-//         -1,
-//         'NEXT_PUBLIC_AUTH_URL cannot not be used if NEXT_PUBLIC_IS_ACCOUNT_SUPPORTED is not set to "true"'
-//       ),
-//   }),
-//   NEXT_PUBLIC_LOGOUT_URL: yup
-//     .string()
-//     .when("NEXT_PUBLIC_IS_ACCOUNT_SUPPORTED", {
-//       is: (value: boolean) => value,
-//       then: (schema) => schema.test(urlTest).required(),
-//       otherwise: (schema) =>
-//         schema.max(
-//           -1,
-//           'NEXT_PUBLIC_LOGOUT_URL cannot not be used if NEXT_PUBLIC_IS_ACCOUNT_SUPPORTED is not set to "true"'
-//         ),
-//     }),
-// });
+const accountSchema = yup.object().shape({
+  NEXT_PUBLIC_IS_ACCOUNT_SUPPORTED: yup.boolean(),
+  NEXT_PUBLIC_AUTH0_CLIENT_ID: yup
+    .string()
+    .when('NEXT_PUBLIC_IS_ACCOUNT_SUPPORTED', {
+      is: (value: boolean) => value,
+      then: (schema) => schema.required(),
+      otherwise: (schema) =>
+        schema.max(
+          -1,
+          'NEXT_PUBLIC_AUTH0_CLIENT_ID cannot not be used if NEXT_PUBLIC_IS_ACCOUNT_SUPPORTED is not set to "true"',
+        ),
+    }),
+  NEXT_PUBLIC_AUTH_URL: yup.string().when('NEXT_PUBLIC_IS_ACCOUNT_SUPPORTED', {
+    is: (value: boolean) => value,
+    then: (schema) => schema.test(urlTest),
+    otherwise: (schema) =>
+      schema.max(
+        -1,
+        'NEXT_PUBLIC_AUTH_URL cannot not be used if NEXT_PUBLIC_IS_ACCOUNT_SUPPORTED is not set to "true"',
+      ),
+  }),
+  NEXT_PUBLIC_LOGOUT_URL: yup
+    .string()
+    .when('NEXT_PUBLIC_IS_ACCOUNT_SUPPORTED', {
+      is: (value: boolean) => value,
+      then: (schema) => schema.test(urlTest).required(),
+      otherwise: (schema) =>
+        schema.max(
+          -1,
+          'NEXT_PUBLIC_LOGOUT_URL cannot not be used if NEXT_PUBLIC_IS_ACCOUNT_SUPPORTED is not set to "true"',
+        ),
+    }),
+});
 
 const featuredNetworkSchema: yup.ObjectSchema<FeaturedNetwork> = yup
   .object()
@@ -901,7 +868,7 @@ const schema = yup
     // Misc
     NEXT_PUBLIC_USE_NEXT_JS_PROXY: yup.boolean(),
   })
-  // .concat(accountSchema)
+  .concat(accountSchema)
   .concat(adsBannerSchema)
   .concat(marketplaceSchema)
   .concat(rollupSchema)
