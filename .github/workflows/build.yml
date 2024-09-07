@@ -12,7 +12,11 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
+    - name: Log in to ghcr.io
+      run: echo "${{ secrets.GHCR_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
     - name: Build the Docker image
       run: |
         COMMIT_SHA=$(echo $GITHUB_SHA | cut -c1-7)
-        docker build -t ${{ github.repository }}:$COMMIT_SHA -f Dockerfile
+        docker build -t ghcr.io/${{ github.repository }}:$COMMIT_SHA -f Dockerfile .
+    - name: Push image to GHCR
+      run: docker push ghcr.io/${{ github.repository_owner }}/${{ github.repository }}:$COMMIT_SHA
