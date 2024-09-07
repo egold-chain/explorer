@@ -1,5 +1,14 @@
 import type { ButtonProps } from '@chakra-ui/react';
-import { PopoverContent, PopoverBody, PopoverTrigger, Button, Box, useBoolean, chakra, useColorModeValue } from '@chakra-ui/react';
+import {
+  PopoverContent,
+  PopoverBody,
+  PopoverTrigger,
+  Button,
+  Box,
+  useBoolean,
+  chakra,
+  useColorModeValue,
+} from '@chakra-ui/react';
 import React from 'react';
 
 import config from 'configs/app';
@@ -34,10 +43,23 @@ type ComponentProps = Props & {
 };
 
 export const WalletMenuDesktop = ({
-  isHomePage, className, size = 'md', isWalletConnected, address, connect,
-  disconnect, isModalOpening, isModalOpen, openModal,
+  isHomePage,
+  className,
+  size = 'md',
+  isWalletConnected,
+  address,
+  connect,
+  disconnect,
+  isModalOpening,
+  isModalOpen,
+  openModal,
 }: ComponentProps) => {
-  const { themedBackground, themedBackgroundOrange, themedBorderColor, themedColor } = useMenuButtonColors();
+  const {
+    themedBackground,
+    themedBackgroundOrange,
+    themedBorderColor,
+    themedColor,
+  } = useMenuButtonColors();
   const [ isPopoverOpen, setIsPopoverOpen ] = useBoolean(false);
   const isMobile = useIsMobile();
   const { isAutoConnectDisabled } = useMarketplaceContext();
@@ -55,13 +77,18 @@ export const WalletMenuDesktop = ({
     if (isWalletConnected) {
       return 'subtle';
     }
-    return isHomePage ? 'solid' : 'outline';
-  }, [ isWalletConnected, isHomePage ]);
+    return 'outline';
+  }, [ isWalletConnected ]);
 
-  const themedColorForOrangeBg = useColorModeValue('blackAlpha.800', 'whiteAlpha.800');
+  const themedColorForOrangeBg = useColorModeValue(
+    'blackAlpha.800',
+    'whiteAlpha.800',
+  );
   let buttonStyles: Partial<ButtonProps> = {};
   if (isWalletConnected) {
-    const backgroundColor = isAutoConnectDisabled ? themedBackgroundOrange : themedBackground;
+    const backgroundColor = isAutoConnectDisabled ?
+      themedBackgroundOrange :
+      themedBackground;
     const color = isAutoConnectDisabled ? themedColorForOrangeBg : themedColor;
     buttonStyles = {
       bg: isHomePage ? 'blue.50' : backgroundColor,
@@ -73,6 +100,7 @@ export const WalletMenuDesktop = ({
   } else if (isHomePage) {
     buttonStyles = {
       color: 'white',
+      borderColor: 'white',
     };
   } else {
     buttonStyles = {
@@ -97,7 +125,12 @@ export const WalletMenuDesktop = ({
       <Box ml={ 2 }>
         <PopoverTrigger>
           <WalletTooltip
-            isDisabled={ isMobile === undefined || isMobile || isModalOpening || isModalOpen }
+            isDisabled={
+              isMobile === undefined ||
+              isMobile ||
+              isModalOpening ||
+              isModalOpen
+            }
             isWalletConnected={ isWalletConnected }
             isAutoConnectDisabled={ isAutoConnectDisabled }
           >
@@ -119,17 +152,38 @@ export const WalletMenuDesktop = ({
             >
               { isWalletConnected ? (
                 <>
-                  <WalletIdenticon address={ address } isAutoConnectDisabled={ isAutoConnectDisabled } mr={ 2 }/>
+                  <WalletIdenticon
+                    address={ address }
+                    isAutoConnectDisabled={ isAutoConnectDisabled }
+                    mr={ 2 }
+                  />
                   { addressDomainQuery.data?.domain?.name ? (
-                    <chakra.span>{ addressDomainQuery.data.domain?.name }</chakra.span>
+                    <chakra.span>
+                      { addressDomainQuery.data.domain?.name }
+                    </chakra.span>
                   ) : (
                     <HashStringShorten hash={ address } isTooltipDisabled/>
                   ) }
                 </>
               ) : (
                 <>
-                  <IconSvg display={{ base: isHomePage ? 'inline' : 'none', xl: 'none' }} name="wallet" boxSize={ 6 } p={ 0.5 }/>
-                  <chakra.span display={{ base: isHomePage ? 'none' : 'inline', xl: 'inline' }}>Connect wallet</chakra.span>
+                  <IconSvg
+                    display={{
+                      base: isHomePage ? 'inline' : 'none',
+                      xl: 'none',
+                    }}
+                    name="wallet"
+                    boxSize={ 6 }
+                    p={ 0.5 }
+                  />
+                  <chakra.span
+                    display={{
+                      base: isHomePage ? 'none' : 'inline',
+                      xl: 'inline',
+                    }}
+                  >
+                    Connect wallet
+                  </chakra.span>
                 </>
               ) }
             </Button>
@@ -155,10 +209,19 @@ export const WalletMenuDesktop = ({
 };
 
 // separated the useWallet hook from the main component because it's hard to mock it in tests
-const WalletMenuDesktopWrapper = ({ isHomePage, className, size = 'md' }: Props) => {
+const WalletMenuDesktopWrapper = ({
+  isHomePage,
+  className,
+  size = 'md',
+}: Props) => {
   const {
-    isWalletConnected, address, connect, disconnect,
-    isModalOpening, isModalOpen, openModal,
+    isWalletConnected,
+    address,
+    connect,
+    disconnect,
+    isModalOpening,
+    isModalOpen,
+    openModal,
   } = useWallet({ source: 'Header' });
 
   return (
