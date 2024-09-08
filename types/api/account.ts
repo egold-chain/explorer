@@ -1,5 +1,4 @@
 import type { AddressParam } from './addressParams';
-
 export interface AddressTag {
   address_hash: string;
   address: AddressParam;
@@ -35,9 +34,9 @@ export interface NotificationDirection {
 
 export interface NotificationSettings {
   'native': NotificationDirection;
-  'EGC-20': NotificationDirection;
-  'EGC-721': NotificationDirection;
-  'EGC-404': NotificationDirection;
+  'ERC-20': NotificationDirection;
+  'ERC-721': NotificationDirection;
+  'ERC-404': NotificationDirection;
 }
 
 export interface NotificationMethods {

@@ -4,7 +4,7 @@ import React from 'react';
 import * as addressMock from 'mocks/address/address';
 import * as tokensMock from 'mocks/address/tokens';
 import { tokenInfoERC20a } from 'mocks/tokens/tokenInfo';
-import { devices, expect, test } from 'playwright/lib';
+import { test, expect, devices } from 'playwright/lib';
 import MockAddressPage from 'ui/address/testUtils/MockAddressPage';
 
 import TokenSelect from './TokenSelect';
@@ -21,10 +21,10 @@ const CLIPPING_AREA = { x: 0, y: 0, width: 360, height: 500 };
 test.beforeEach(async({ mockApiResponse, mockAssetResponse }) => {
   await mockAssetResponse(ASSET_URL, './playwright/mocks/image_s.jpg');
   await mockApiResponse('address', addressMock.validator, { pathParams: { hash: ADDRESS_HASH }, times: 1 });
-  await mockApiResponse('address_tokens', tokensMock.erc20List, { pathParams: { hash: ADDRESS_HASH }, queryParams: { type: 'EGC-20' }, times: 1 });
-  await mockApiResponse('address_tokens', tokensMock.erc721List, { pathParams: { hash: ADDRESS_HASH }, queryParams: { type: 'EGC-721' }, times: 1 });
-  await mockApiResponse('address_tokens', tokensMock.erc1155List, { pathParams: { hash: ADDRESS_HASH }, queryParams: { type: 'EGC-1155' }, times: 1 });
-  await mockApiResponse('address_tokens', tokensMock.erc404List, { pathParams: { hash: ADDRESS_HASH }, queryParams: { type: 'EGC-404' }, times: 1 });
+  await mockApiResponse('address_tokens', tokensMock.erc20List, { pathParams: { hash: ADDRESS_HASH }, queryParams: { type: 'ERC-20' }, times: 1 });
+  await mockApiResponse('address_tokens', tokensMock.erc721List, { pathParams: { hash: ADDRESS_HASH }, queryParams: { type: 'ERC-721' }, times: 1 });
+  await mockApiResponse('address_tokens', tokensMock.erc1155List, { pathParams: { hash: ADDRESS_HASH }, queryParams: { type: 'ERC-1155' }, times: 1 });
+  await mockApiResponse('address_tokens', tokensMock.erc404List, { pathParams: { hash: ADDRESS_HASH }, queryParams: { type: 'ERC-404' }, times: 1 });
 });
 
 test('base view +@dark-mode', async({ render, page }) => {
@@ -77,13 +77,13 @@ test('sort', async({ render, page }) => {
     { hooksConfig },
   );
   await page.getByRole('button', { name: /select/i }).click();
-  await page.locator('a[aria-label="Sort EGC-20 tokens"]').click();
+  await page.locator('a[aria-label="Sort ERC-20 tokens"]').click();
 
   await expect(page).toHaveScreenshot({ clip: CLIPPING_AREA });
 
   await page.mouse.move(100, 200);
   await page.mouse.wheel(0, 1000);
-  await page.locator('a[aria-label="Sort EGC-1155 tokens"]').click();
+  await page.locator('a[aria-label="Sort ERC-1155 tokens"]').click();
 
   await expect(page).toHaveScreenshot({ clip: CLIPPING_AREA });
 });
@@ -106,14 +106,14 @@ test('filter', async({ render, page }) => {
 test('long values', async({ render, page, mockApiResponse }) => {
   await mockApiResponse('address_tokens', {
     items: [ tokensMock.erc20LongSymbol, tokensMock.erc20BigAmount ], next_page_params: null,
-  }, { pathParams: { hash: ADDRESS_HASH }, queryParams: { type: 'EGC-20' }, times: 1 });
+  }, { pathParams: { hash: ADDRESS_HASH }, queryParams: { type: 'ERC-20' }, times: 1 });
   await mockApiResponse('address_tokens', {
     items: [ tokensMock.erc721LongSymbol ], next_page_params: null,
-  }, { pathParams: { hash: ADDRESS_HASH }, queryParams: { type: 'EGC-721' }, times: 1 });
+  }, { pathParams: { hash: ADDRESS_HASH }, queryParams: { type: 'ERC-721' }, times: 1 });
   await mockApiResponse('address_tokens', {
     items: [ tokensMock.erc1155LongId ], next_page_params: null,
-  }, { pathParams: { hash: ADDRESS_HASH }, queryParams: { type: 'EGC-1155' }, times: 1 });
-  await mockApiResponse('address_tokens', tokensMock.erc404List, { pathParams: { hash: ADDRESS_HASH }, queryParams: { type: 'EGC-404' }, times: 1 });
+  }, { pathParams: { hash: ADDRESS_HASH }, queryParams: { type: 'ERC-1155' }, times: 1 });
+  await mockApiResponse('address_tokens', tokensMock.erc404List, { pathParams: { hash: ADDRESS_HASH }, queryParams: { type: 'ERC-404' }, times: 1 });
 
   await render(
     <MockAddressPage>

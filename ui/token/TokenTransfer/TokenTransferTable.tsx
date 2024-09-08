@@ -1,4 +1,4 @@
-import { Table, Tbody, Th, Tr } from '@chakra-ui/react';
+import { Table, Tbody, Tr, Th } from '@chakra-ui/react';
 import React from 'react';
 
 import type { TokenInfo } from 'types/api/token';
@@ -32,12 +32,12 @@ const TokenTransferTable = ({ data, top, showSocketInfo, socketInfoAlert, socket
           <Tr>
             <Th width="280px">Txn hash</Th>
             <Th width="200px">Method</Th>
-            <Th width={ { lg: '224px', xl: '380px' } }>From/To</Th>
+            <Th width={{ lg: '224px', xl: '380px' }}>From/To</Th>
             { (NFT_TOKEN_TYPE_IDS.includes(tokenType)) &&
-                <Th width={ tokenType === 'EGC-1155' || tokenType === 'EGC-404' ? '50%' : '100%' }>Token ID</Th>
+              <Th width={ tokenType === 'ERC-1155' || tokenType === 'ERC-404' ? '50%' : '100%' }>Token ID</Th>
             }
-            { (tokenType === 'EGC-20' || tokenType === 'EGC-1155' || tokenType === 'EGC-404') && (
-              <Th width={ tokenType === 'EGC-20' ? '100%' : '50%' } isNumeric>
+            { (tokenType === 'ERC-20' || tokenType === 'ERC-1155' || tokenType === 'ERC-404') && (
+              <Th width={ tokenType === 'ERC-20' ? '100%' : '50%' } isNumeric>
                 <TruncatedValue value={ `Value ${ token?.symbol || '' }` } w="100%" verticalAlign="middle"/>
               </Th>
             ) }

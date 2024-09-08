@@ -1,4 +1,4 @@
-import { Box, Flex, Input, InputGroup, InputLeftElement, Link, Text, useColorModeValue } from '@chakra-ui/react';
+import { Text, Box, Input, InputGroup, InputLeftElement, useColorModeValue, Flex, Link } from '@chakra-ui/react';
 import _sumBy from 'lodash/sumBy';
 import type { ChangeEvent } from 'react';
 import React from 'react';
@@ -10,7 +10,7 @@ import { getTokenTypeName } from 'lib/token/tokenTypes';
 import IconSvg from 'ui/shared/IconSvg';
 
 import type { Sort } from '../utils/tokenUtils';
-import { sortingFns, sortTokenGroups } from '../utils/tokenUtils';
+import { sortTokenGroups, sortingFns } from '../utils/tokenUtils';
 import TokenSelectItem from './TokenSelectItem';
 
 interface Props {
@@ -31,7 +31,7 @@ const TokenSelectMenu = ({ erc20sort, erc1155sort, erc404sort, filteredData, onI
   return (
     <>
       <InputGroup size="xs" mb={ 5 }>
-        <InputLeftElement>
+        <InputLeftElement >
           <IconSvg name="search" boxSize={ 4 } color={ searchIconColor }/>
         </InputLeftElement>
         <Input
@@ -50,25 +50,25 @@ const TokenSelectMenu = ({ erc20sort, erc1155sort, erc404sort, filteredData, onI
 
           const type = tokenType as TokenType;
           const arrowTransform =
-            (type === 'EGC-1155' && erc1155sort === 'desc') ||
-            (type === 'EGC-404' && erc404sort === 'desc') ||
-            (type === 'EGC-20' && erc20sort === 'desc') ?
+            (type === 'ERC-1155' && erc1155sort === 'desc') ||
+            (type === 'ERC-404' && erc404sort === 'desc') ||
+            (type === 'ERC-20' && erc20sort === 'desc') ?
               'rotate(90deg)' :
               'rotate(-90deg)';
           const sortDirection: Sort = (() => {
             switch (type) {
-              case 'EGC-1155':
+              case 'ERC-1155':
                 return erc1155sort;
-              case 'EGC-20':
+              case 'ERC-20':
                 return erc20sort;
               default:
                 return 'desc';
             }
           })();
           const hasSort =
-            (type === 'EGC-404' && tokenInfo.items.some(item => item.value)) ||
-            type === 'EGC-1155' ||
-            (type === 'EGC-20' && tokenInfo.items.some(({ usd }) => usd));
+            (type === 'ERC-404' && tokenInfo.items.some(item => item.value)) ||
+            type === 'ERC-1155' ||
+            (type === 'ERC-20' && tokenInfo.items.some(({ usd }) => usd));
           const numPrefix = tokenInfo.isOverflow ? '>' : '';
 
           return (

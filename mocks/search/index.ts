@@ -1,13 +1,13 @@
 import type {
-  SearchResult,
-  SearchResultAddressOrContract,
-  SearchResultBlob,
-  SearchResultBlock,
-  SearchResultDomain,
-  SearchResultLabel,
   SearchResultToken,
+  SearchResultBlock,
+  SearchResultAddressOrContract,
   SearchResultTx,
+  SearchResultLabel,
+  SearchResult,
   SearchResultUserOp,
+  SearchResultBlob,
+  SearchResultDomain,
 } from 'types/api/search';
 
 export const token1: SearchResultToken = {
@@ -18,7 +18,7 @@ export const token1: SearchResultToken = {
   token_url: '/token/0x377c5F2B300B25a534d4639177873b7fEAA56d4B',
   type: 'token' as const,
   icon_url: 'http://localhost:3000/token-icon.png',
-  token_type: 'EGC-721',
+  token_type: 'ERC-721',
   total_supply: '10000001',
   exchange_rate: null,
   is_verified_via_admin_panel: true,
@@ -33,7 +33,7 @@ export const token2: SearchResultToken = {
   token_url: '/token/0xC35Cc7223B0175245E9964f2E3119c261E8e21F9',
   type: 'token' as const,
   icon_url: null,
-  token_type: 'EGC-20',
+  token_type: 'ERC-20',
   total_supply: '10000001',
   exchange_rate: '1.11',
   is_verified_via_admin_panel: false,

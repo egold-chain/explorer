@@ -1,6 +1,6 @@
 import type { Transaction } from 'types/api/transaction';
 
-import type { AddressImplementation, UserTags } from './addressParams';
+import type { UserTags, AddressImplementation } from './addressParams';
 import type { Block } from './block';
 import type { InternalTransaction } from './internalTransaction';
 import type { MudWorldSchema, MudWorldTable } from './mudWorlds';
@@ -46,7 +46,7 @@ export interface AddressTokenBalance {
 
 export type AddressNFT = TokenInstance & {
   token: TokenInfo;
-  token_type: Omit<TokenType, 'EGC-20'>;
+  token_type: Omit<TokenType, 'ERC-20'>;
   value: string;
 }
 
@@ -157,7 +157,6 @@ export interface AddressBlocksValidatedResponse {
     items_count: number;
   };
 }
-
 export interface AddressInternalTxsResponse {
   items: Array<InternalTransaction>;
   next_page_params: {

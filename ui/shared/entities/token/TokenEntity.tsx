@@ -1,5 +1,5 @@
 import type { ChakraProps } from '@chakra-ui/react';
-import { chakra, Image, Skeleton } from '@chakra-ui/react';
+import { Image, Skeleton, chakra } from '@chakra-ui/react';
 import _omit from 'lodash/omit';
 import React from 'react';
 
@@ -52,7 +52,7 @@ const Icon = (props: IconProps) => {
   return (
     <Image
       { ...styles }
-      borderRadius={ props.token.type === 'EGC-20' ? 'full' : 'base' }
+      borderRadius={ props.token.type === 'ERC-20' ? 'full' : 'base' }
       className={ props.className }
       src={ props.token.icon_url ?? undefined }
       alt={ `${ props.token.name || 'token' } logo` }

@@ -1,4 +1,4 @@
-import { Box, chakra, Flex, Image, Skeleton, Tag, Td, Text, Tr, useColorMode } from '@chakra-ui/react';
+import { chakra, Tr, Td, Text, Flex, Image, Box, Skeleton, useColorMode, Tag } from '@chakra-ui/react';
 import React from 'react';
 import xss from 'xss';
 
@@ -54,7 +54,7 @@ const SearchResultTableItem = ({ data, searchTerm, isLoading }: Props) => {
           <>
             <Td fontSize="sm">
               <Flex alignItems="center">
-                <TokenEntity.Icon token={ { ...data, type: data.token_type } } isLoading={ isLoading }/>
+                <TokenEntity.Icon token={{ ...data, type: data.token_type }} isLoading={ isLoading }/>
                 <LinkInternal
                   href={ route({ pathname: '/token/[hash]', query: { hash: data.address } }) }
                   fontWeight={ 700 }
@@ -68,7 +68,7 @@ const SearchResultTableItem = ({ data, searchTerm, isLoading }: Props) => {
                     overflow="hidden"
                     textOverflow="ellipsis"
                     whiteSpace="nowrap"
-                    dangerouslySetInnerHTML={ { __html: highlightText(name, searchTerm) } }
+                    dangerouslySetInnerHTML={{ __html: highlightText(name, searchTerm) }}
                   />
                 </LinkInternal>
                 { data.is_verified_via_admin_panel && <IconSvg name="certified" boxSize={ 4 } ml={ 1 } color="green.500"/> }
@@ -85,8 +85,8 @@ const SearchResultTableItem = ({ data, searchTerm, isLoading }: Props) => {
             <Td fontSize="sm" verticalAlign="middle" isNumeric>
               <Skeleton isLoaded={ !isLoading } whiteSpace="nowrap" overflow="hidden">
                 <Text overflow="hidden" whiteSpace="nowrap" textOverflow="ellipsis" fontWeight={ 700 }>
-                  { data.token_type === 'EGC-20' && data.exchange_rate && `$${ Number(data.exchange_rate).toLocaleString() }` }
-                  { data.token_type !== 'EGC-20' && data.total_supply && `Items ${ Number(data.total_supply).toLocaleString() }` }
+                  { data.token_type === 'ERC-20' && data.exchange_rate && `$${ Number(data.exchange_rate).toLocaleString() }` }
+                  { data.token_type !== 'ERC-20' && data.total_supply && `Items ${ Number(data.total_supply).toLocaleString() }` }
                 </Text>
               </Skeleton>
             </Td>
@@ -136,13 +136,13 @@ const SearchResultTableItem = ({ data, searchTerm, isLoading }: Props) => {
                     whiteSpace="nowrap"
                     textOverflow="ellipsis"
                   >
-                    <span dangerouslySetInnerHTML={ { __html: shouldHighlightHash ? xss(addressName) : highlightText(addressName, searchTerm) } }/>
+                    <span dangerouslySetInnerHTML={{ __html: shouldHighlightHash ? xss(addressName) : highlightText(addressName, searchTerm) }}/>
                     { data.ens_info && (
                       data.ens_info.names_count > 1 ? (
-                          <chakra.span color="text_secondary">
-                            { data.ens_info.names_count > 39 ? '40+' : `+${ data.ens_info.names_count - 1 }` }
-                          </chakra.span>
-                        ) :
+                        <chakra.span color="text_secondary">
+                          { data.ens_info.names_count > 39 ? '40+' : `+${ data.ens_info.names_count - 1 }` }
+                        </chakra.span>
+                      ) :
                         <chakra.span color="text_secondary">{ expiresText }</chakra.span>
                     ) }
                   </Text>
@@ -167,7 +167,7 @@ const SearchResultTableItem = ({ data, searchTerm, isLoading }: Props) => {
                   isLoading={ isLoading }
                   onClick={ handleLinkClick }
                 >
-                  <span dangerouslySetInnerHTML={ { __html: highlightText(data.name, searchTerm) } }/>
+                  <span dangerouslySetInnerHTML={{ __html: highlightText(data.name, searchTerm) }}/>
                 </LinkInternal>
               </Flex>
             </Td>
@@ -185,7 +185,7 @@ const SearchResultTableItem = ({ data, searchTerm, isLoading }: Props) => {
       }
 
       case 'app': {
-        const title = <span dangerouslySetInnerHTML={ { __html: highlightText(data.app.title, searchTerm) } }/>;
+        const title = <span dangerouslySetInnerHTML={{ __html: highlightText(data.app.title, searchTerm) }}/>;
         return (
           <>
             <Td fontSize="sm">
@@ -381,7 +381,7 @@ const SearchResultTableItem = ({ data, searchTerm, isLoading }: Props) => {
                 >
                   <Skeleton
                     isLoaded={ !isLoading }
-                    dangerouslySetInnerHTML={ { __html: highlightText(data.ens_info.name, searchTerm) } }
+                    dangerouslySetInnerHTML={{ __html: highlightText(data.ens_info.name, searchTerm) }}
                     whiteSpace="nowrap"
                     overflow="hidden"
                     textOverflow="ellipsis"

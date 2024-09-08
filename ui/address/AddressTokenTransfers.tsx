@@ -4,8 +4,8 @@ import { useRouter } from 'next/router';
 import React from 'react';
 
 import type { SocketMessage } from 'lib/socket/types';
-import type { AddressFromToFilter, AddressTokenTransferResponse } from 'types/api/address';
 import { AddressFromToFilterValues } from 'types/api/address';
+import type { AddressFromToFilter, AddressTokenTransferResponse } from 'types/api/address';
 import type { TokenType } from 'types/api/token';
 import type { TokenTransfer } from 'types/api/tokenTransfer';
 
@@ -189,7 +189,7 @@ const AddressTokenTransfers = ({ scrollRef, overloadCount = OVERLOAD_COUNT, shou
     name: '',
     icon_url: '',
     symbol: '',
-    type: 'EGC-20' as const,
+    type: 'ERC-20' as const,
   }), [ tokenFilter ]);
 
   if (!isMounted || !shouldRender) {
@@ -236,7 +236,7 @@ const AddressTokenTransfers = ({ scrollRef, overloadCount = OVERLOAD_COUNT, shou
   ) : null;
 
   const tokenFilterComponent = tokenFilter && (
-    <Flex alignItems="center" flexWrap="wrap" mb={ { base: isActionBarHidden ? 3 : 6, lg: 0 } } mr={ 4 }>
+    <Flex alignItems="center" flexWrap="wrap" mb={{ base: isActionBarHidden ? 3 : 6, lg: 0 }} mr={ 4 }>
       <Text whiteSpace="nowrap" mr={ 2 } py={ 1 }>Filtered by token</Text>
       <Flex alignItems="center" py={ 1 }>
         <TokenEntity.Icon token={ tokenData } isLoading={ isPlaceholderData }/>
@@ -266,12 +266,12 @@ const AddressTokenTransfers = ({ scrollRef, overloadCount = OVERLOAD_COUNT, shou
           { currentAddress && (
             <AddressCsvExportLink
               address={ currentAddress }
-              params={ { type: 'token-transfers', filterType: 'address', filterValue: filters.filter } }
-              ml={ { base: 2, lg: 'auto' } }
+              params={{ type: 'token-transfers', filterType: 'address', filterValue: filters.filter }}
+              ml={{ base: 2, lg: 'auto' }}
               isLoading={ isPlaceholderData }
             />
           ) }
-          <Pagination ml={ { base: 'auto', lg: 8 } } { ...pagination }/>
+          <Pagination ml={{ base: 'auto', lg: 8 }} { ...pagination }/>
         </ActionBar>
       ) }
     </>
@@ -282,10 +282,10 @@ const AddressTokenTransfers = ({ scrollRef, overloadCount = OVERLOAD_COUNT, shou
       isError={ isError }
       items={ data?.items }
       emptyText="There are no token transfers."
-      filterProps={ {
+      filterProps={{
         emptyFilteredText: `Couldn${ apos }t find any token transfer that matches your query.`,
         hasActiveFilters: Boolean(numActiveFilters),
-      } }
+      }}
       content={ content }
       actionBar={ actionBar }
     />

@@ -1,4 +1,4 @@
-import { Flex, Grid, Text } from '@chakra-ui/react';
+import { Grid, Text, Flex } from '@chakra-ui/react';
 import React from 'react';
 
 import type { SearchResultToken } from 'types/api/search';
@@ -15,7 +15,7 @@ interface Props {
 }
 
 const SearchBarSuggestToken = ({ data, isMobile, searchTerm }: Props) => {
-  const icon = <TokenEntity.Icon token={ { ...data, type: data.token_type } }/>;
+  const icon = <TokenEntity.Icon token={{ ...data, type: data.token_type }}/>;
   const verifiedIcon = <IconSvg name="certified" boxSize={ 4 } color="green.500" ml={ 1 }/>;
   const name = (
     <Text
@@ -24,7 +24,7 @@ const SearchBarSuggestToken = ({ data, isMobile, searchTerm }: Props) => {
       whiteSpace="nowrap"
       textOverflow="ellipsis"
     >
-      <span dangerouslySetInnerHTML={ { __html: highlightText(data.name + (data.symbol ? ` (${ data.symbol })` : ''), searchTerm) } }/>
+      <span dangerouslySetInnerHTML={{ __html: highlightText(data.name + (data.symbol ? ` (${ data.symbol })` : ''), searchTerm) }}/>
     </Text>
   );
 
@@ -37,14 +37,14 @@ const SearchBarSuggestToken = ({ data, isMobile, searchTerm }: Props) => {
   const contractVerifiedIcon = data.is_smart_contract_verified && <IconSvg name="status/success" boxSize="14px" color="green.500" ml={ 1 } flexShrink={ 0 }/>;
   const additionalInfo = (
     <Text overflow="hidden" whiteSpace="nowrap" fontWeight={ 700 }>
-      { data.token_type === 'EGC-20' && data.exchange_rate && `$${ Number(data.exchange_rate).toLocaleString() }` }
-      { data.token_type !== 'EGC-20' && data.total_supply && `Items ${ Number(data.total_supply).toLocaleString() }` }
+      { data.token_type === 'ERC-20' && data.exchange_rate && `$${ Number(data.exchange_rate).toLocaleString() }` }
+      { data.token_type !== 'ERC-20' && data.total_supply && `Items ${ Number(data.total_supply).toLocaleString() }` }
     </Text>
   );
 
   if (isMobile) {
     const templateCols = `1fr
-    ${ (data.token_type === 'EGC-20' && data.exchange_rate) || (data.token_type !== 'EGC-20' && data.total_supply) ? ' auto' : '' }`;
+    ${ (data.token_type === 'ERC-20' && data.exchange_rate) || (data.token_type !== 'ERC-20' && data.total_supply) ? ' auto' : '' }`;
 
     return (
       <>

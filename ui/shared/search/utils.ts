@@ -7,15 +7,15 @@ export type ApiCategory = 'token' | 'nft' | 'address' | 'public_tag' | 'transact
 export type Category = ApiCategory | 'app';
 
 export type ItemsCategoriesMap =
-  Record<ApiCategory, Array<SearchResultItem>> &
-  Record<'app', Array<MarketplaceAppOverview>>;
+Record<ApiCategory, Array<SearchResultItem>> &
+Record<'app', Array<MarketplaceAppOverview>>;
 
 export type SearchResultAppItem = {
   type: 'app';
   app: MarketplaceAppOverview;
 }
 
-export const searchCategories: Array<{ id: Category; title: string }> = [
+export const searchCategories: Array<{id: Category; title: string }> = [
   { id: 'app', title: 'DApps' },
   { id: 'token', title: `Tokens (${ config.chain.tokenStandard }-20)` },
   { id: 'nft', title: `NFTs (${ config.chain.tokenStandard }-721 & 1155)` },
@@ -57,7 +57,7 @@ export function getItemCategory(item: SearchResultItem | SearchResultAppItem): C
       return 'address';
     }
     case 'token': {
-      if (item.token_type === 'EGC-20') {
+      if (item.token_type === 'ERC-20') {
         return 'token';
       }
       return 'nft';

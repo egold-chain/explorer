@@ -12,7 +12,7 @@ import type { AddressesItem } from 'types/api/addresses';
 
 import { ADDRESS_HASH } from './addressParams';
 import { MUD_SCHEMA, MUD_TABLE } from './mud';
-import { TOKEN_INFO_ERC_1155, TOKEN_INFO_ERC_20, TOKEN_INFO_ERC_404, TOKEN_INFO_ERC_721, TOKEN_INSTANCE } from './token';
+import { TOKEN_INFO_ERC_1155, TOKEN_INFO_ERC_20, TOKEN_INFO_ERC_721, TOKEN_INFO_ERC_404, TOKEN_INSTANCE } from './token';
 import { TX_HASH } from './tx';
 
 export const ADDRESS_INFO: Address = {
@@ -65,7 +65,7 @@ export const TOP_ADDRESS: AddressesItem = {
   is_verified: null,
   name: null,
   private_tags: [],
-  public_tags: [],
+  public_tags: [ ],
   watchlist_names: [],
   ens_domain_name: null,
 };
@@ -86,21 +86,21 @@ export const ADDRESS_TOKEN_BALANCE_ERC_20: AddressTokenBalance = {
 };
 
 export const ADDRESS_NFT_721: AddressNFT = {
-  token_type: 'EGC-721',
+  token_type: 'ERC-721',
   token: TOKEN_INFO_ERC_721,
   value: '1',
   ...TOKEN_INSTANCE,
 };
 
 export const ADDRESS_NFT_1155: AddressNFT = {
-  token_type: 'EGC-1155',
+  token_type: 'ERC-1155',
   token: TOKEN_INFO_ERC_1155,
   value: '10',
   ...TOKEN_INSTANCE,
 };
 
 export const ADDRESS_NFT_404: AddressNFT = {
-  token_type: 'EGC-404',
+  token_type: 'ERC-404',
   token: TOKEN_INFO_ERC_404,
   value: '10',
   ...TOKEN_INSTANCE,

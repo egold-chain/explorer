@@ -1,4 +1,4 @@
-import { Flex, Grid, Skeleton } from '@chakra-ui/react';
+import { Grid, Flex, Skeleton } from '@chakra-ui/react';
 import React from 'react';
 
 import type { TokenTransfer } from 'types/api/tokenTransfer';
@@ -16,16 +16,16 @@ import TruncatedValue from 'ui/shared/TruncatedValue';
 type Props = TokenTransfer & { tokenId?: string; isLoading?: boolean };
 
 const TokenTransferListItem = ({
-                                 token,
-                                 total,
-                                 tx_hash: txHash,
-                                 from,
-                                 to,
-                                 method,
-                                 timestamp,
-                                 tokenId,
-                                 isLoading,
-                               }: Props) => {
+  token,
+  total,
+  tx_hash: txHash,
+  from,
+  to,
+  method,
+  timestamp,
+  tokenId,
+  isLoading,
+}: Props) => {
   const { usd, valueStr } = 'value' in total && total.value !== null ? getCurrencyValue({
     value: total.value,
     exchangeRate: token.exchange_rate,
@@ -62,7 +62,7 @@ const TokenTransferListItem = ({
         w="100%"
         fontWeight="500"
       />
-      { valueStr && (token.type === 'EGC-20' || token.type === 'EGC-1155') && (
+      { valueStr && (token.type === 'ERC-20' || token.type === 'ERC-1155') && (
         <Grid gap={ 2 } templateColumns={ `1fr auto auto${ usd ? ' auto' : '' }` }>
           <Skeleton isLoaded={ !isLoading } flexShrink={ 0 } fontWeight={ 500 }>
             Value

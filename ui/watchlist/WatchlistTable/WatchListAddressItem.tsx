@@ -1,4 +1,4 @@
-import { Flex, HStack, Skeleton, Text, VStack } from '@chakra-ui/react';
+import { HStack, VStack, Flex, Skeleton, Text } from '@chakra-ui/react';
 import BigNumber from 'bignumber.js';
 import React from 'react';
 
@@ -19,8 +19,8 @@ const WatchListAddressItem = ({ item, isLoading }: { item: WatchlistAddress; isL
     icon_url: '',
     symbol: '',
     address: '',
-    type: 'EGC-20' as const,
-  }), []);
+    type: 'ERC-20' as const,
+  }), [ ]);
 
   const { usdBn: usdNative } = getCurrencyValue({ value: item.address_balance, accuracy: 2, accuracyUsd: 2, exchangeRate: item.exchange_rate });
 

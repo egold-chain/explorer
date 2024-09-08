@@ -6,7 +6,7 @@ import type { AddressTokensResponse } from 'types/api/address';
 import * as addressMock from 'mocks/address/address';
 import * as tokensMock from 'mocks/address/tokens';
 import * as socketServer from 'playwright/fixtures/socketServer';
-import { devices, expect, test } from 'playwright/lib';
+import { test, expect, devices } from 'playwright/lib';
 
 import AddressTokens from './AddressTokens';
 
@@ -15,7 +15,7 @@ const ADDRESS_HASH = addressMock.validator.hash;
 const nextPageParams = {
   items_count: 50,
   token_name: 'aaa',
-  token_type: 'EGC-20' as const,
+  token_type: 'ERC-20' as const,
   value: 1,
   fiat_value: '1',
 };
@@ -39,10 +39,10 @@ test.beforeEach(async({ mockApiResponse }) => {
   };
 
   await mockApiResponse('address', addressMock.validator, { pathParams: { hash: ADDRESS_HASH } });
-  await mockApiResponse('address_tokens', response20, { pathParams: { hash: ADDRESS_HASH }, queryParams: { type: 'EGC-20' } });
-  await mockApiResponse('address_tokens', response721, { pathParams: { hash: ADDRESS_HASH }, queryParams: { type: 'EGC-721' } });
-  await mockApiResponse('address_tokens', response1155, { pathParams: { hash: ADDRESS_HASH }, queryParams: { type: 'EGC-1155' } });
-  await mockApiResponse('address_tokens', response404, { pathParams: { hash: ADDRESS_HASH }, queryParams: { type: 'EGC-404' } });
+  await mockApiResponse('address_tokens', response20, { pathParams: { hash: ADDRESS_HASH }, queryParams: { type: 'ERC-20' } });
+  await mockApiResponse('address_tokens', response721, { pathParams: { hash: ADDRESS_HASH }, queryParams: { type: 'ERC-721' } });
+  await mockApiResponse('address_tokens', response1155, { pathParams: { hash: ADDRESS_HASH }, queryParams: { type: 'ERC-1155' } });
+  await mockApiResponse('address_tokens', response404, { pathParams: { hash: ADDRESS_HASH }, queryParams: { type: 'ERC-404' } });
   await mockApiResponse('address_nfts', tokensMock.nfts, { pathParams: { hash: ADDRESS_HASH }, queryParams: { type: [] } });
   await mockApiResponse('address_collections', tokensMock.collections, { pathParams: { hash: ADDRESS_HASH }, queryParams: { type: [] } });
 });
@@ -56,7 +56,7 @@ test('erc20 +@dark-mode', async({ render }) => {
   };
 
   const component = await render(
-    <Box pt={ { base: '134px', lg: 6 } }>
+    <Box pt={{ base: '134px', lg: 6 }}>
       <AddressTokens/>
     </Box>,
     { hooksConfig },
@@ -74,7 +74,7 @@ test('collections +@dark-mode', async({ render }) => {
   };
 
   const component = await render(
-    <Box pt={ { base: '134px', lg: 6 } }>
+    <Box pt={{ base: '134px', lg: 6 }}>
       <AddressTokens/>
     </Box>,
     { hooksConfig },
@@ -92,7 +92,7 @@ test('nfts +@dark-mode', async({ render }) => {
   };
 
   const component = await render(
-    <Box pt={ { base: '134px', lg: 6 } }>
+    <Box pt={{ base: '134px', lg: 6 }}>
       <AddressTokens/>
     </Box>,
     { hooksConfig },
@@ -115,7 +115,7 @@ test.describe('mobile', () => {
     };
 
     const component = await render(
-      <Box pt={ { base: '134px', lg: 6 } }>
+      <Box pt={{ base: '134px', lg: 6 }}>
         <AddressTokens/>
       </Box>,
       { hooksConfig },
@@ -133,7 +133,7 @@ test.describe('mobile', () => {
     };
 
     const component = await render(
-      <Box pt={ { base: '134px', lg: 6 } }>
+      <Box pt={{ base: '134px', lg: 6 }}>
         <AddressTokens/>
       </Box>,
       { hooksConfig },
@@ -153,7 +153,7 @@ test.describe('mobile', () => {
     };
 
     const component = await render(
-      <Box pt={ { base: '134px', lg: 6 } }>
+      <Box pt={{ base: '134px', lg: 6 }}>
         <AddressTokens/>
       </Box>,
       { hooksConfig },
@@ -193,13 +193,13 @@ test.describe('update balances via socket', () => {
       next_page_params: null,
     };
 
-    const erc20ApiUrl = await mockApiResponse('address_tokens', response20, { pathParams: { hash: ADDRESS_HASH }, queryParams: { type: 'EGC-20' } });
-    const erc721ApiUrl = await mockApiResponse('address_tokens', response721, { pathParams: { hash: ADDRESS_HASH }, queryParams: { type: 'EGC-721' } });
-    const erc1155ApiUrl = await mockApiResponse('address_tokens', response1155, { pathParams: { hash: ADDRESS_HASH }, queryParams: { type: 'EGC-1155' } });
-    const erc404ApiUrl = await mockApiResponse('address_tokens', response404, { pathParams: { hash: ADDRESS_HASH }, queryParams: { type: 'EGC-404' } });
+    const erc20ApiUrl = await mockApiResponse('address_tokens', response20, { pathParams: { hash: ADDRESS_HASH }, queryParams: { type: 'ERC-20' } });
+    const erc721ApiUrl = await mockApiResponse('address_tokens', response721, { pathParams: { hash: ADDRESS_HASH }, queryParams: { type: 'ERC-721' } });
+    const erc1155ApiUrl = await mockApiResponse('address_tokens', response1155, { pathParams: { hash: ADDRESS_HASH }, queryParams: { type: 'ERC-1155' } });
+    const erc404ApiUrl = await mockApiResponse('address_tokens', response404, { pathParams: { hash: ADDRESS_HASH }, queryParams: { type: 'ERC-404' } });
 
     const component = await render(
-      <Box pt={ { base: '134px', lg: 6 } }>
+      <Box pt={{ base: '134px', lg: 6 }}>
         <AddressTokens/>
       </Box>,
       { hooksConfig },

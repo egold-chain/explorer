@@ -3,7 +3,7 @@ import React from 'react';
 
 import * as addressMock from 'mocks/address/address';
 import * as tokensMock from 'mocks/address/tokens';
-import { expect, test } from 'playwright/lib';
+import { test, expect } from 'playwright/lib';
 
 import AddressNetWorth from './AddressNetWorth';
 
@@ -11,10 +11,10 @@ const ADDRESS_HASH = addressMock.hash;
 const ICON_URL = 'https://localhost:3000/my-icon.png';
 
 test.beforeEach(async({ mockApiResponse }) => {
-  await mockApiResponse('address_tokens', tokensMock.erc20List, { pathParams: { hash: ADDRESS_HASH }, queryParams: { type: 'EGC-20' } });
-  await mockApiResponse('address_tokens', tokensMock.erc721List, { pathParams: { hash: ADDRESS_HASH }, queryParams: { type: 'EGC-721' } });
-  await mockApiResponse('address_tokens', tokensMock.erc1155List, { pathParams: { hash: ADDRESS_HASH }, queryParams: { type: 'EGC-1155' } });
-  await mockApiResponse('address_tokens', tokensMock.erc404List, { pathParams: { hash: ADDRESS_HASH }, queryParams: { type: 'EGC-404' } });
+  await mockApiResponse('address_tokens', tokensMock.erc20List, { pathParams: { hash: ADDRESS_HASH }, queryParams: { type: 'ERC-20' } });
+  await mockApiResponse('address_tokens', tokensMock.erc721List, { pathParams: { hash: ADDRESS_HASH }, queryParams: { type: 'ERC-721' } });
+  await mockApiResponse('address_tokens', tokensMock.erc1155List, { pathParams: { hash: ADDRESS_HASH }, queryParams: { type: 'ERC-1155' } });
+  await mockApiResponse('address_tokens', tokensMock.erc404List, { pathParams: { hash: ADDRESS_HASH }, queryParams: { type: 'ERC-404' } });
 });
 
 test('base view', async({ render }) => {
