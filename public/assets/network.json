@@ -3,12 +3,12 @@
     "title": "eGoldChain",
     "url": "https://egoldscan.io/",
     "group": "Mainnets",
-    "icon": "https://raw.githubusercontent.com/egold-chain/explorer/main/public/assets/network_logo.svg"
+    "icon": "https://raw.githubusercontent.com/egold-chain/explorer/main/public/assets/network_icon.svg"
   },
   {
     "title": "eGoldChain - Testnet",
     "url": "https://testnet.egoldscan.io/",
     "group": "Testnets",
-    "icon": "https://raw.githubusercontent.com/egold-chain/explorer/main/public/assets/network_logo.svg"
+    "icon": "https://raw.githubusercontent.com/egold-chain/explorer/main/public/assets/network_icon.svg"
   }
 ]
