@@ -99,8 +99,8 @@ const TokenDetails = ({ tokenQuery }: Props) => {
   return (
     <Grid
       columnGap={ 8 }
-      rowGap={{ base: 1, lg: 3 }}
-      templateColumns={{ base: 'minmax(0, 1fr)', lg: 'auto minmax(728px, auto)' }} overflow="hidden"
+      rowGap={ { base: 1, lg: 3 } }
+      templateColumns={ { base: 'minmax(0, 1fr)', lg: 'auto minmax(728px, auto)' } } overflow="hidden"
     >
       { exchangeRate && (
         <>
@@ -192,7 +192,7 @@ const TokenDetails = ({ tokenQuery }: Props) => {
         </>
       ) }
 
-      { type !== 'ERC-20' && (
+      { type !== 'EGC-20' && (
         <TokenNftMarketplaces
           hash={ hash }
           isLoading={ tokenQuery.isPlaceholderData }
@@ -201,7 +201,7 @@ const TokenDetails = ({ tokenQuery }: Props) => {
         />
       ) }
 
-      { (type !== 'ERC-20' && config.UI.views.nft.marketplaces.length === 0 && appActionData) && (
+      { (type !== 'EGC-20' && config.UI.views.nft.marketplaces.length === 0 && appActionData) && (
         <>
           <DetailsInfoItem.Label
             hint="Link to the dapp"

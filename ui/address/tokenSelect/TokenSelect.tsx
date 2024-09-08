@@ -1,5 +1,5 @@
 import { Box, Flex, IconButton, Skeleton, Tooltip } from '@chakra-ui/react';
-import { useQueryClient, useIsFetching } from '@tanstack/react-query';
+import { useIsFetching, useQueryClient } from '@tanstack/react-query';
 import _sumBy from 'lodash/sumBy';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
@@ -32,7 +32,7 @@ const TokenSelect = ({ onClick }: Props) => {
   const addressQueryData = queryClient.getQueryData<Address>(addressResourceKey);
 
   const { data, isError, isPending } = useFetchTokens({ hash: addressQueryData?.hash });
-  const tokensResourceKey = getResourceKey('address_tokens', { pathParams: { hash: addressQueryData?.hash }, queryParams: { type: 'ERC-20' } });
+  const tokensResourceKey = getResourceKey('address_tokens', { pathParams: { hash: addressQueryData?.hash }, queryParams: { type: 'EGC-20' } });
   const tokensIsFetching = useIsFetching({ queryKey: tokensResourceKey });
 
   const handleIconButtonClick = React.useCallback(() => {
@@ -55,14 +55,14 @@ const TokenSelect = ({ onClick }: Props) => {
   }
 
   return (
-    <Flex columnGap={ 3 } mt={{ base: 1, lg: 0 }}>
+    <Flex columnGap={ 3 } mt={ { base: 1, lg: 0 } }>
       { isMobile ?
         <TokenSelectMobile data={ data } isLoading={ tokensIsFetching === 1 }/> :
         <TokenSelectDesktop data={ data } isLoading={ tokensIsFetching === 1 }/>
       }
       <Tooltip label="Show all tokens">
         <Box>
-          <NextLink href={{ pathname: '/address/[hash]', query: { hash: addressHash, tab: 'tokens' } }} passHref legacyBehavior>
+          <NextLink href={ { pathname: '/address/[hash]', query: { hash: addressHash, tab: 'tokens' } } } passHref legacyBehavior>
             <IconButton
               aria-label="Show all tokens"
               variant="outline"

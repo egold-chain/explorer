@@ -130,7 +130,7 @@ export interface BlockCountdownResponse {
 
 export interface BlockEpochElectionReward {
   count: number;
-  token: TokenInfo<'ERC-20'>;
+  token: TokenInfo<'EGC-20'>;
   total: string;
 }
 

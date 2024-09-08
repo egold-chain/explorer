@@ -19,13 +19,13 @@ export default function useTokenSelect(data: FormattedData) {
 
   const onSortClick = React.useCallback((event: React.SyntheticEvent) => {
     const tokenType = (event.currentTarget as HTMLAnchorElement).getAttribute('data-type');
-    if (tokenType === 'ERC-1155') {
+    if (tokenType === 'EGC-1155') {
       setErc1155Sort((prevValue) => prevValue === 'desc' ? 'asc' : 'desc');
     }
-    if (tokenType === 'ERC-404') {
+    if (tokenType === 'EGC-404') {
       setErc404Sort((prevValue) => prevValue === 'desc' ? 'asc' : 'desc');
     }
-    if (tokenType === 'ERC-20') {
+    if (tokenType === 'EGC-20') {
       setErc20Sort((prevValue) => prevValue === 'desc' ? 'asc' : 'desc');
     }
   }, []);

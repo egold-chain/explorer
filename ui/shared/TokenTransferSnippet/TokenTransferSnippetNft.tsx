@@ -17,8 +17,8 @@ const NftTokenTransferSnippet = ({ value, token, tokenId }: Props) => {
 
   const tokenIdContent = (() => {
     if (tokenId === null) {
-      // ERC-404 may not have an ID
-      if (token.type === 'ERC-404') {
+      // EGC-404 may not have an ID
+      if (token.type === 'EGC-404') {
         return null;
       }
       return <chakra.span color="text_secondary"> N/A </chakra.span>;
@@ -30,7 +30,7 @@ const NftTokenTransferSnippet = ({ value, token, tokenId }: Props) => {
         id={ tokenId }
         fontWeight={ 600 }
         iconSize="md"
-        maxW={{ base: '100%', lg: '150px' }}
+        maxW={ { base: '100%', lg: '150px' } }
         w="auto"
         flexShrink={ 0 }
       />

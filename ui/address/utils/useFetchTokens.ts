@@ -10,6 +10,7 @@ import useSocketChannel from 'lib/socket/useSocketChannel';
 import useSocketMessage from 'lib/socket/useSocketMessage';
 
 import { calculateUsdValue } from './tokenUtils';
+
 interface Props {
   hash?: string;
   enabled?: boolean;
@@ -24,22 +25,22 @@ const tokenBalanceItemIdentityFactory = (match: AddressTokenBalance) => (item: A
 export default function useFetchTokens({ hash, enabled }: Props) {
   const erc20query = useApiQuery('address_tokens', {
     pathParams: { hash },
-    queryParams: { type: 'ERC-20' },
+    queryParams: { type: 'EGC-20' },
     queryOptions: { enabled: Boolean(hash) && enabled, refetchOnMount: false },
   });
   const erc721query = useApiQuery('address_tokens', {
     pathParams: { hash },
-    queryParams: { type: 'ERC-721' },
+    queryParams: { type: 'EGC-721' },
     queryOptions: { enabled: Boolean(hash) && enabled, refetchOnMount: false },
   });
   const erc1155query = useApiQuery('address_tokens', {
     pathParams: { hash },
-    queryParams: { type: 'ERC-1155' },
+    queryParams: { type: 'EGC-1155' },
     queryOptions: { enabled: Boolean(hash) && enabled, refetchOnMount: false },
   });
   const erc404query = useApiQuery('address_tokens', {
     pathParams: { hash },
-    queryParams: { type: 'ERC-404' },
+    queryParams: { type: 'EGC-404' },
     queryOptions: { enabled: Boolean(hash) && enabled, refetchOnMount: false },
   });
 
@@ -73,19 +74,19 @@ export default function useFetchTokens({ hash, enabled }: Props) {
   }, [ hash, queryClient ]);
 
   const handleTokenBalancesErc20Message: SocketMessage.AddressTokenBalancesErc20['handler'] = React.useCallback((payload) => {
-    updateTokensData('ERC-20', payload);
+    updateTokensData('EGC-20', payload);
   }, [ updateTokensData ]);
 
   const handleTokenBalancesErc721Message: SocketMessage.AddressTokenBalancesErc721['handler'] = React.useCallback((payload) => {
-    updateTokensData('ERC-721', payload);
+    updateTokensData('EGC-721', payload);
   }, [ updateTokensData ]);
 
   const handleTokenBalancesErc1155Message: SocketMessage.AddressTokenBalancesErc1155['handler'] = React.useCallback((payload) => {
-    updateTokensData('ERC-1155', payload);
+    updateTokensData('EGC-1155', payload);
   }, [ updateTokensData ]);
 
   const handleTokenBalancesErc404Message: SocketMessage.AddressTokenBalancesErc1155['handler'] = React.useCallback((payload) => {
-    updateTokensData('ERC-404', payload);
+    updateTokensData('EGC-404', payload);
   }, [ updateTokensData ]);
 
   const channel = useSocketChannel({
@@ -116,19 +117,19 @@ export default function useFetchTokens({ hash, enabled }: Props) {
 
   const data = React.useMemo(() => {
     return {
-      'ERC-20': {
+      'EGC-20': {
         items: erc20query.data?.items.map(calculateUsdValue) || [],
         isOverflow: Boolean(erc20query.data?.next_page_params),
       },
-      'ERC-721': {
+      'EGC-721': {
         items: erc721query.data?.items.map(calculateUsdValue) || [],
         isOverflow: Boolean(erc721query.data?.next_page_params),
       },
-      'ERC-1155': {
+      'EGC-1155': {
         items: erc1155query.data?.items.map(calculateUsdValue) || [],
         isOverflow: Boolean(erc1155query.data?.next_page_params),
       },
-      'ERC-404': {
+      'EGC-404': {
         items: erc404query.data?.items.map(calculateUsdValue) || [],
         isOverflow: Boolean(erc1155query.data?.next_page_params),
       },

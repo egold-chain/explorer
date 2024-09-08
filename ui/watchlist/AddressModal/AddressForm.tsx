@@ -1,12 +1,8 @@
-import {
-  Box,
-  Button,
-  Text,
-} from '@chakra-ui/react';
+import { Box, Button, Text } from '@chakra-ui/react';
 import { useMutation } from '@tanstack/react-query';
 import React, { useCallback, useState } from 'react';
-import type { SubmitHandler, ControllerRenderProps } from 'react-hook-form';
-import { useForm, Controller } from 'react-hook-form';
+import type { ControllerRenderProps, SubmitHandler } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 
 import type { WatchlistAddress, WatchlistErrors } from 'types/api/account';
 
@@ -21,7 +17,7 @@ import TagInput from 'ui/shared/TagInput';
 import AddressFormNotifications from './AddressFormNotifications';
 
 // does it depend on the network?
-const NOTIFICATIONS = [ 'native', 'ERC-20', 'ERC-721', 'ERC-404' ] as const;
+const NOTIFICATIONS = [ 'native', 'EGC-20', 'EGC-721', 'EGC-404' ] as const;
 
 const TAG_MAX_LENGTH = 35;
 
@@ -41,15 +37,15 @@ type Inputs = {
       outcoming: boolean;
       incoming: boolean;
     };
-    'ERC-721': {
+    'EGC-721': {
       outcoming: boolean;
       incoming: boolean;
     };
-    'ERC-20': {
+    'EGC-20': {
       outcoming: boolean;
       incoming: boolean;
     };
-    'ERC-404': {
+    'EGC-404': {
       outcoming: boolean;
       incoming: boolean;
     };
@@ -57,14 +53,14 @@ type Inputs = {
 }
 
 type Checkboxes = 'notification' |
-'notification_settings.native.outcoming' |
-'notification_settings.native.incoming' |
-'notification_settings.ERC-20.outcoming' |
-'notification_settings.ERC-20.incoming' |
-'notification_settings.ERC-721.outcoming' |
-'notification_settings.ERC-721.incoming' |
-'notification_settings.ERC-404.outcoming' |
-'notification_settings.ERC-404.incoming';
+  'notification_settings.native.outcoming' |
+  'notification_settings.native.incoming' |
+  'notification_settings.EGC-20.outcoming' |
+  'notification_settings.EGC-20.incoming' |
+  'notification_settings.EGC-721.outcoming' |
+  'notification_settings.EGC-721.incoming' |
+  'notification_settings.EGC-404.outcoming' |
+  'notification_settings.EGC-404.incoming';
 
 const AddressForm: React.FC<Props> = ({ data, onSuccess, setAlertVisible, isAdd }) => {
   const [ pending, setPending ] = useState(false);
@@ -136,7 +132,7 @@ const AddressForm: React.FC<Props> = ({ data, onSuccess, setAlertVisible, isAdd 
     mutate(formData);
   };
 
-  const renderAddressInput = useCallback(({ field }: {field: ControllerRenderProps<Inputs, 'address'>}) => {
+  const renderAddressInput = useCallback(({ field }: { field: ControllerRenderProps<Inputs, 'address'> }) => {
     return (
       <AddressInput<Inputs, 'address'>
         field={ field }
@@ -146,12 +142,12 @@ const AddressForm: React.FC<Props> = ({ data, onSuccess, setAlertVisible, isAdd 
     );
   }, [ errors ]);
 
-  const renderTagInput = useCallback(({ field }: {field: ControllerRenderProps<Inputs, 'tag'>}) => {
+  const renderTagInput = useCallback(({ field }: { field: ControllerRenderProps<Inputs, 'tag'> }) => {
     return <TagInput<Inputs, 'tag'> field={ field } error={ errors.tag } bgColor="dialog_bg"/>;
   }, [ errors ]);
 
   // eslint-disable-next-line react/display-name
-  const renderCheckbox = useCallback((text: string) => ({ field }: {field: ControllerRenderProps<Inputs, Checkboxes>}) => (
+  const renderCheckbox = useCallback((text: string) => ({ field }: { field: ControllerRenderProps<Inputs, Checkboxes> }) => (
     <CheckboxInput<Inputs, Checkboxes> text={ text } field={ field }/>
   ), []);
 
@@ -161,10 +157,10 @@ const AddressForm: React.FC<Props> = ({ data, onSuccess, setAlertVisible, isAdd 
         <Controller
           name="address"
           control={ control }
-          rules={{
+          rules={ {
             pattern: ADDRESS_REGEXP,
             required: true,
-          }}
+          } }
           render={ renderAddressInput }
         />
       </Box>
@@ -172,10 +168,10 @@ const AddressForm: React.FC<Props> = ({ data, onSuccess, setAlertVisible, isAdd 
         <Controller
           name="tag"
           control={ control }
-          rules={{
+          rules={ {
             maxLength: TAG_MAX_LENGTH,
             required: true,
-          }}
+          } }
           render={ renderTagInput }
         />
       </Box>
@@ -185,7 +181,7 @@ const AddressForm: React.FC<Props> = ({ data, onSuccess, setAlertVisible, isAdd 
       <Box marginBottom={ 8 }>
         <AddressFormNotifications control={ control }/>
       </Box>
-      <Text variant="secondary" fontSize="sm" marginBottom={{ base: '10px', lg: 5 }}>Notification methods</Text>
+      <Text variant="secondary" fontSize="sm" marginBottom={ { base: '10px', lg: 5 } }>Notification methods</Text>
       <Controller
         name={ 'notification' as Checkboxes }
         control={ control }
