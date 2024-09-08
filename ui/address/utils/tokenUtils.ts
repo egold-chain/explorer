@@ -8,7 +8,7 @@ import sumBnReducer from 'lib/bigint/sumBnReducer';
 import { ZERO } from 'lib/consts';
 
 export type TokenEnhancedData = AddressTokenBalance & {
-  usd?: BigNumber ;
+  usd?: BigNumber;
 }
 
 export type Sort = 'desc' | 'asc';
@@ -20,9 +20,9 @@ export interface TokenSelectDataItem {
   isOverflow: boolean;
 }
 
-type TokenGroup = [string, TokenSelectDataItem];
+type TokenGroup = [ string, TokenSelectDataItem ];
 
-const TOKEN_GROUPS_ORDER: Array<TokenType> = [ 'ERC-20', 'ERC-721', 'ERC-1155', 'ERC-404' ];
+const TOKEN_GROUPS_ORDER: Array<TokenType> = [ 'EGC-20', 'EGC-721', 'EGC-1155', 'EGC-404' ];
 
 export const sortTokenGroups = (groupA: TokenGroup, groupB: TokenGroup) => {
   return TOKEN_GROUPS_ORDER.indexOf(groupA[0] as TokenType) > TOKEN_GROUPS_ORDER.indexOf(groupB[0] as TokenType) ? 1 : -1;
@@ -62,10 +62,10 @@ const sortErc20Tokens = (sort: Sort) => (dataA: TokenEnhancedData, dataB: TokenE
 const sortErc721Tokens = () => () => 0;
 
 export const sortingFns = {
-  'ERC-20': sortErc20Tokens,
-  'ERC-721': sortErc721Tokens,
-  'ERC-1155': sortErc1155or404Tokens,
-  'ERC-404': sortErc1155or404Tokens,
+  'EGC-20': sortErc20Tokens,
+  'EGC-721': sortErc721Tokens,
+  'EGC-1155': sortErc1155or404Tokens,
+  'EGC-404': sortErc1155or404Tokens,
 };
 
 export const filterTokens = (searchTerm: string) => ({ token }: AddressTokenBalance) => {
@@ -77,7 +77,7 @@ export const filterTokens = (searchTerm: string) => ({ token }: AddressTokenBala
 };
 
 export const calculateUsdValue = (data: AddressTokenBalance): TokenEnhancedData => {
-  if (data.token.type !== 'ERC-20') {
+  if (data.token.type !== 'EGC-20') {
     return data;
   }
 

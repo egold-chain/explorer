@@ -34,7 +34,7 @@ test('with token filter and pagination', async({ render, mockApiResponse }) => {
     queryParams: { token: TOKEN_HASH },
   });
   const component = await render(
-    <Box pt={{ base: '134px', lg: 6 }}>
+    <Box pt={ { base: '134px', lg: 6 } }>
       <AddressTokenTransfers/>
     </Box>,
     { hooksConfig },
@@ -48,7 +48,7 @@ test('with token filter and no pagination', async({ render, mockApiResponse }) =
     queryParams: { token: TOKEN_HASH },
   });
   const component = await render(
-    <Box pt={{ base: '134px', lg: 6 }}>
+    <Box pt={ { base: '134px', lg: 6 } }>
       <AddressTokenTransfers/>
     </Box>,
     { hooksConfig },
@@ -65,7 +65,7 @@ test.describe('mobile', () => {
       queryParams: { token: TOKEN_HASH },
     });
     const component = await render(
-      <Box pt={{ base: '134px', lg: 6 }}>
+      <Box pt={ { base: '134px', lg: 6 } }>
         <AddressTokenTransfers/>
       </Box>,
       { hooksConfig },
@@ -79,7 +79,7 @@ test.describe('mobile', () => {
       queryParams: { token: TOKEN_HASH },
     });
     const component = await render(
-      <Box pt={{ base: '134px', lg: 6 }}>
+      <Box pt={ { base: '134px', lg: 6 } }>
         <AddressTokenTransfers/>
       </Box>,
       { hooksConfig },
@@ -100,7 +100,7 @@ test.describe('socket', () => {
       queryParams: { type: [] },
     });
     await render(
-      <Box pt={{ base: '134px', lg: 6 }}>
+      <Box pt={ { base: '134px', lg: 6 } }>
         <AddressTokenTransfers/>
       </Box>,
       { hooksConfig: hooksConfigNoToken },
@@ -132,7 +132,7 @@ test.describe('socket', () => {
       queryParams: { type: [] },
     });
     await render(
-      <Box pt={{ base: '134px', lg: 6 }}>
+      <Box pt={ { base: '134px', lg: 6 } }>
         <AddressTokenTransfers overloadCount={ 2 }/>
       </Box>,
       { hooksConfig: hooksConfigNoToken },
@@ -159,16 +159,16 @@ test.describe('socket', () => {
   test('without overload, with filters', async({ render, mockApiResponse, page, createSocket }) => {
     const hooksConfigWithFilter = {
       router: {
-        query: { hash: CURRENT_ADDRESS, type: 'ERC-1155' },
+        query: { hash: CURRENT_ADDRESS, type: 'EGC-1155' },
       },
     };
     await mockApiResponse('address_token_transfers', tokenTransfersWithPagination, {
       pathParams: { hash: CURRENT_ADDRESS },
-      queryParams: { type: 'ERC-1155' },
+      queryParams: { type: 'EGC-1155' },
     });
 
     await render(
-      <Box pt={{ base: '134px', lg: 6 }}>
+      <Box pt={ { base: '134px', lg: 6 } }>
         <AddressTokenTransfers/>
       </Box>,
       { hooksConfig: hooksConfigWithFilter },
@@ -192,16 +192,16 @@ test.describe('socket', () => {
   test('with overload, with filters', async({ render, mockApiResponse, page, createSocket }) => {
     const hooksConfigWithFilter = {
       router: {
-        query: { hash: CURRENT_ADDRESS, type: 'ERC-1155' },
+        query: { hash: CURRENT_ADDRESS, type: 'EGC-1155' },
       },
     };
     await mockApiResponse('address_token_transfers', tokenTransfersWithPagination, {
       pathParams: { hash: CURRENT_ADDRESS },
-      queryParams: { type: 'ERC-1155' },
+      queryParams: { type: 'EGC-1155' },
     });
 
     await render(
-      <Box pt={{ base: '134px', lg: 6 }}>
+      <Box pt={ { base: '134px', lg: 6 } }>
         <AddressTokenTransfers overloadCount={ 2 }/>
       </Box>,
       { hooksConfig: hooksConfigWithFilter },

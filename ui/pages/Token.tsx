@@ -198,7 +198,7 @@ const TokenPageContent = () => {
   let pagination: PaginationParams | undefined;
 
   // default tab for erc-20 is token transfers
-  if ((tokenQuery.data?.type === 'ERC-20' && !tab) || tab === 'token_transfers') {
+  if ((tokenQuery.data?.type === 'EGC-20' && !tab) || tab === 'token_transfers') {
     pagination = transfersQuery.pagination;
   }
 
@@ -234,7 +234,7 @@ const TokenPageContent = () => {
         { tab === 'holders' && (
           <AddressCsvExportLink
             address={ hashString }
-            params={{ type: 'holders' }}
+            params={ { type: 'holders' } }
             isLoading={ pagination?.isLoading }
           />
         ) }

@@ -1,13 +1,7 @@
 import { Flex, Skeleton } from '@chakra-ui/react';
 import React from 'react';
 
-import type {
-  TokenTransfer,
-  Erc20TotalPayload,
-  Erc721TotalPayload,
-  Erc1155TotalPayload,
-  Erc404TotalPayload,
-} from 'types/api/tokenTransfer';
+import type { Erc1155TotalPayload, Erc20TotalPayload, Erc404TotalPayload, Erc721TotalPayload, TokenTransfer } from 'types/api/tokenTransfer';
 
 import AddressFromTo from 'ui/shared/address/AddressFromTo';
 
@@ -29,12 +23,12 @@ const TokenTransferSnippet = ({ data, isLoading, noAddressIcons = true }: Props)
     }
 
     switch (data.token.type) {
-      case 'ERC-20': {
+      case 'EGC-20': {
         const total = data.total as Erc20TotalPayload;
         return <TokenTransferSnippetFiat token={ data.token } value={ total.value } decimals={ total.decimals }/>;
       }
 
-      case 'ERC-721': {
+      case 'EGC-721': {
         const total = data.total as Erc721TotalPayload;
         return (
           <TokenTransferSnippetNft
@@ -45,7 +39,7 @@ const TokenTransferSnippet = ({ data, isLoading, noAddressIcons = true }: Props)
         );
       }
 
-      case 'ERC-1155': {
+      case 'EGC-1155': {
         const total = data.total as Erc1155TotalPayload;
         return (
           <TokenTransferSnippetNft
@@ -57,7 +51,7 @@ const TokenTransferSnippet = ({ data, isLoading, noAddressIcons = true }: Props)
         );
       }
 
-      case 'ERC-404': {
+      case 'EGC-404': {
         const total = data.total as Erc404TotalPayload;
 
         if (total.token_id !== null) {

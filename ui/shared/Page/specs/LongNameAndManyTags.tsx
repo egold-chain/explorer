@@ -3,7 +3,7 @@ import React from 'react';
 
 import type { TokenInfo } from 'types/api/token';
 
-import { publicTag, privateTag, watchlistName } from 'mocks/address/tag';
+import { privateTag, publicTag, watchlistName } from 'mocks/address/tag';
 import * as TokenEntity from 'ui/shared/entities/token/TokenEntity';
 import EntityTags from 'ui/shared/EntityTags/EntityTags';
 import formatUserTags from 'ui/shared/EntityTags/formatUserTags';
@@ -22,7 +22,7 @@ const LongNameAndManyTags = () => {
     name: 'Ring ding ding daa baa Baa aramba baa bom baa barooumba Wh-wha-what&#39;s going on-on? Ding, ding This is the Crazy Frog Ding, ding Bem, bem! Ring ding ding ding ding ding Ring ding ding ding bem bem bem Ring ding ding ding ding ding Ring ding ding ding baa b',
     symbol: 'BatcoiRing ding ding daa baa Baa aramba baa bom baa barooumba Wh-wha-what&#39;s going on-on? Ding, ding This is the Crazy Frog Ding, ding Bem, bem! Ring ding ding ding ding ding Ring ding ding ding bem bem bem Ring ding ding ding ding ding Ring ding ding ding',
     total_supply: '13747',
-    type: 'ERC-721',
+    type: 'EGC-721',
   };
 
   const contentAfter = (

@@ -2,7 +2,7 @@
 import type { Transaction } from 'types/api/transaction';
 
 import * as addressMock from 'mocks/address/address';
-import { publicTag, privateTag, watchlistName } from 'mocks/address/tag';
+import { privateTag, publicTag, watchlistName } from 'mocks/address/tag';
 import * as tokenTransferMock from 'mocks/tokens/tokenTransfer';
 import * as decodedInputDataMock from 'mocks/txs/decodedInputData';
 
@@ -27,7 +27,7 @@ export const base: Transaction = {
     is_contract: false,
     name: null,
     is_verified: null,
-    private_tags: [ ],
+    private_tags: [],
     public_tags: [ publicTag ],
     watchlist_names: [],
     ens_domain_name: 'kitty.kitty.cat.eth',
@@ -172,9 +172,9 @@ export const withRawRevertReason: Transaction = {
     is_verified: true,
     is_contract: true,
     name: 'Bad guy',
-    private_tags: [ ],
+    private_tags: [],
     public_tags: [],
-    watchlist_names: [ ],
+    watchlist_names: [],
     ens_domain_name: null,
   },
 };
@@ -304,7 +304,7 @@ export const stabilityTx: Transaction = {
       name: 'Stability Gas',
       symbol: 'GAS',
       total_supply: '10000000000000000000000000',
-      type: 'ERC-20',
+      type: 'EGC-20',
     },
     total_fee: '68762500000000',
     validator_address: {
@@ -335,7 +335,7 @@ export const celoTxn: Transaction = {
       name: 'Celo Dollar',
       symbol: 'cUSD',
       total_supply: '7145754483836626799435133',
-      type: 'ERC-20',
+      type: 'EGC-20',
     },
   },
 };

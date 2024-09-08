@@ -1,22 +1,14 @@
-import type {
-  TokenCounters,
-  TokenHolder,
-  TokenHolders,
-  TokenHoldersPagination,
-  TokenInfo,
-  TokenInstance,
-  TokenType,
-} from 'types/api/token';
+import type { TokenCounters, TokenHolder, TokenHolders, TokenHoldersPagination, TokenInfo, TokenInstance, TokenType } from 'types/api/token';
 import type { TokenInstanceTransferPagination, TokenInstanceTransferResponse } from 'types/api/tokens';
 import type { TokenTransfer, TokenTransferPagination, TokenTransferResponse } from 'types/api/tokenTransfer';
 
-import { ADDRESS_PARAMS, ADDRESS_HASH } from './addressParams';
+import { ADDRESS_HASH, ADDRESS_PARAMS } from './addressParams';
 import { TX_HASH } from './tx';
 import { generateListStub } from './utils';
 
 export const BLOCK_HASH = '0x8fa7b9e5e5e79deeb62d608db22ba9a5cb45388c7ebb9223ae77331c6080dc70';
 
-export const TOKEN_INFO_ERC_20: TokenInfo<'ERC-20'> = {
+export const TOKEN_INFO_ERC_20: TokenInfo<'EGC-20'> = {
   address: ADDRESS_HASH,
   circulating_market_cap: '117629601.61913824',
   decimals: '18',
@@ -25,26 +17,26 @@ export const TOKEN_INFO_ERC_20: TokenInfo<'ERC-20'> = {
   name: 'Stub Token (goerli)',
   symbol: 'STUB',
   total_supply: '60000000000000000000000',
-  type: 'ERC-20',
+  type: 'EGC-20',
   icon_url: null,
 };
 
-export const TOKEN_INFO_ERC_721: TokenInfo<'ERC-721'> = {
+export const TOKEN_INFO_ERC_721: TokenInfo<'EGC-721'> = {
   ...TOKEN_INFO_ERC_20,
   circulating_market_cap: null,
-  type: 'ERC-721',
+  type: 'EGC-721',
 };
 
-export const TOKEN_INFO_ERC_1155: TokenInfo<'ERC-1155'> = {
+export const TOKEN_INFO_ERC_1155: TokenInfo<'EGC-1155'> = {
   ...TOKEN_INFO_ERC_20,
   circulating_market_cap: null,
-  type: 'ERC-1155',
+  type: 'EGC-1155',
 };
 
-export const TOKEN_INFO_ERC_404: TokenInfo<'ERC-404'> = {
+export const TOKEN_INFO_ERC_404: TokenInfo<'EGC-404'> = {
   ...TOKEN_INFO_ERC_20,
   circulating_market_cap: null,
-  type: 'ERC-404',
+  type: 'EGC-404',
 };
 
 export const TOKEN_COUNTERS: TokenCounters = {
@@ -65,11 +57,11 @@ export const TOKEN_HOLDER_ERC_1155: TokenHolder = {
 
 export const getTokenHoldersStub = (type?: TokenType, pagination: TokenHoldersPagination | null = null): TokenHolders => {
   switch (type) {
-    case 'ERC-721':
+    case 'EGC-721':
       return generateListStub<'token_holders'>(TOKEN_HOLDER_ERC_20, 50, { next_page_params: pagination });
-    case 'ERC-1155':
+    case 'EGC-1155':
       return generateListStub<'token_holders'>(TOKEN_HOLDER_ERC_1155, 50, { next_page_params: pagination });
-    case 'ERC-404':
+    case 'EGC-404':
       return generateListStub<'token_holders'>(TOKEN_HOLDER_ERC_1155, 50, { next_page_params: pagination });
     default:
       return generateListStub<'token_holders'>(TOKEN_HOLDER_ERC_20, 50, { next_page_params: pagination });
@@ -78,11 +70,11 @@ export const getTokenHoldersStub = (type?: TokenType, pagination: TokenHoldersPa
 
 export const getTokenInstanceHoldersStub = (type?: TokenType, pagination: TokenHoldersPagination | null = null): TokenHolders => {
   switch (type) {
-    case 'ERC-721':
+    case 'EGC-721':
       return generateListStub<'token_instance_holders'>(TOKEN_HOLDER_ERC_20, 10, { next_page_params: pagination });
-    case 'ERC-1155':
+    case 'EGC-1155':
       return generateListStub<'token_instance_holders'>(TOKEN_HOLDER_ERC_1155, 10, { next_page_params: pagination });
-    case 'ERC-404':
+    case 'EGC-404':
       return generateListStub<'token_instance_holders'>(TOKEN_HOLDER_ERC_1155, 10, { next_page_params: pagination });
     default:
       return generateListStub<'token_instance_holders'>(TOKEN_HOLDER_ERC_20, 10, { next_page_params: pagination });
@@ -135,11 +127,11 @@ export const TOKEN_TRANSFER_ERC_404: TokenTransfer = {
 
 export const getTokenTransfersStub = (type?: TokenType, pagination: TokenTransferPagination | null = null): TokenTransferResponse => {
   switch (type) {
-    case 'ERC-721':
+    case 'EGC-721':
       return generateListStub<'token_transfers'>(TOKEN_TRANSFER_ERC_721, 50, { next_page_params: pagination });
-    case 'ERC-1155':
+    case 'EGC-1155':
       return generateListStub<'token_transfers'>(TOKEN_TRANSFER_ERC_1155, 50, { next_page_params: pagination });
-    case 'ERC-404':
+    case 'EGC-404':
       return generateListStub<'token_transfers'>(TOKEN_TRANSFER_ERC_404, 50, { next_page_params: pagination });
     default:
       return generateListStub<'token_transfers'>(TOKEN_TRANSFER_ERC_20, 50, { next_page_params: pagination });
@@ -148,11 +140,11 @@ export const getTokenTransfersStub = (type?: TokenType, pagination: TokenTransfe
 
 export const getTokenInstanceTransfersStub = (type?: TokenType, pagination: TokenInstanceTransferPagination | null = null): TokenInstanceTransferResponse => {
   switch (type) {
-    case 'ERC-721':
+    case 'EGC-721':
       return generateListStub<'token_instance_transfers'>(TOKEN_TRANSFER_ERC_721, 10, { next_page_params: pagination });
-    case 'ERC-1155':
+    case 'EGC-1155':
       return generateListStub<'token_instance_transfers'>(TOKEN_TRANSFER_ERC_1155, 10, { next_page_params: pagination });
-    case 'ERC-404':
+    case 'EGC-404':
       return generateListStub<'token_instance_transfers'>(TOKEN_TRANSFER_ERC_404, 10, { next_page_params: pagination });
     default:
       return generateListStub<'token_instance_transfers'>(TOKEN_TRANSFER_ERC_20, 10, { next_page_params: pagination });

@@ -13,7 +13,7 @@ import useIsMobile from 'lib/hooks/useIsMobile';
 import useIsMounted from 'lib/hooks/useIsMounted';
 import getQueryParamString from 'lib/router/getQueryParamString';
 import { NFT_TOKEN_TYPE_IDS } from 'lib/token/tokenTypes';
-import { ADDRESS_TOKEN_BALANCE_ERC_20, ADDRESS_NFT_1155, ADDRESS_COLLECTION } from 'stubs/address';
+import { ADDRESS_COLLECTION, ADDRESS_NFT_1155, ADDRESS_TOKEN_BALANCE_ERC_20 } from 'stubs/address';
 import { generateListStub } from 'stubs/utils';
 import PopoverFilter from 'ui/shared/filters/PopoverFilter';
 import TokenTypeFilter from 'ui/shared/filters/TokenTypeFilter';
@@ -65,7 +65,7 @@ const AddressTokens = ({ shouldRender = true, isQueryEnabled = true }: Props) =>
   const erc20Query = useQueryWithPages({
     resourceName: 'address_tokens',
     pathParams: { hash },
-    filters: { type: 'ERC-20' },
+    filters: { type: 'EGC-20' },
     scrollRef,
     options: {
       enabled: isQueryEnabled && (!tab || tab === 'tokens_erc20'),
@@ -112,7 +112,7 @@ const AddressTokens = ({ shouldRender = true, isQueryEnabled = true }: Props) =>
   }
 
   const nftTypeFilter = (
-    <PopoverFilter contentProps={{ w: '200px' }} appliedFiltersNum={ tokenTypes?.length }>
+    <PopoverFilter contentProps={ { w: '200px' } } appliedFiltersNum={ tokenTypes?.length }>
       <TokenTypeFilter<NFTTokenType> nftOnly onChange={ handleTokenTypesChange } defaultValue={ tokenTypes }/>
     </PopoverFilter>
   );
