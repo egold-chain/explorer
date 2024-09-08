@@ -1,4 +1,4 @@
-import { Box, Flex, Skeleton, Td, Tr } from '@chakra-ui/react';
+import { Tr, Td, Flex, Skeleton, Box } from '@chakra-ui/react';
 import React from 'react';
 
 import type { TokenTransfer } from 'types/api/tokenTransfer';
@@ -14,16 +14,16 @@ import TimeAgoWithTooltip from 'ui/shared/TimeAgoWithTooltip';
 type Props = TokenTransfer & { tokenId?: string; isLoading?: boolean }
 
 const TokenTransferTableItem = ({
-                                  token,
-                                  total,
-                                  tx_hash: txHash,
-                                  from,
-                                  to,
-                                  method,
-                                  timestamp,
-                                  tokenId,
-                                  isLoading,
-                                }: Props) => {
+  token,
+  total,
+  tx_hash: txHash,
+  from,
+  to,
+  method,
+  timestamp,
+  tokenId,
+  isLoading,
+}: Props) => {
   const { usd, valueStr } = 'value' in total && total.value !== null ? getCurrencyValue({
     value: total.value,
     exchangeRate: token.exchange_rate,
@@ -67,7 +67,7 @@ const TokenTransferTableItem = ({
           to={ to }
           isLoading={ isLoading }
           mt="5px"
-          mode={ { lg: 'compact', xl: 'long' } }
+          mode={{ lg: 'compact', xl: 'long' }}
           tokenHash={ token.address }
         />
       </Td>
@@ -84,7 +84,7 @@ const TokenTransferTableItem = ({
           }
         </Td>
       ) }
-      { (token.type === 'EGC-20' || token.type === 'EGC-1155' || token.type === 'EGC-404') && (
+      { (token.type === 'ERC-20' || token.type === 'ERC-1155' || token.type === 'ERC-404') && (
         <Td isNumeric verticalAlign="top">
           { valueStr && (
             <Skeleton isLoaded={ !isLoading } display="inline-block" mt="7px" wordBreak="break-all">

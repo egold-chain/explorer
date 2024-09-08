@@ -11,7 +11,7 @@ import * as DetailsInfoItem from 'ui/shared/DetailsInfoItem';
 import TokenEntity from 'ui/shared/entities/token/TokenEntity';
 
 interface Props {
-  gasToken?: TokenInfo<'EGC-20'> | null;
+  gasToken?: TokenInfo<'ERC-20'> | null;
   gasPrice: string | null;
   isLoading?: boolean;
 }

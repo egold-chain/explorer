@@ -1,4 +1,4 @@
-import { chakra, Flex } from '@chakra-ui/react';
+import { Flex, chakra } from '@chakra-ui/react';
 import BigNumber from 'bignumber.js';
 import React from 'react';
 
@@ -16,14 +16,10 @@ interface Props {
 
 function getActionText(actionType: TxActionGeneral['type']) {
   switch (actionType) {
-    case 'mint':
-      return [ 'Added', 'liquidity to' ];
-    case 'burn':
-      return [ 'Removed', 'liquidity from' ];
-    case 'collect':
-      return [ 'Collected', 'from' ];
-    case 'swap':
-      return [ 'Swapped', 'on' ];
+    case 'mint': return [ 'Added', 'liquidity to' ];
+    case 'burn': return [ 'Removed', 'liquidity from' ];
+    case 'collect': return [ 'Collected', 'from' ];
+    case 'swap': return [ 'Swapped', 'on' ];
   }
 }
 
@@ -45,14 +41,14 @@ const TxDetailsAction = ({ action }: Props) => {
       const token0 = {
         address: data.symbol0 === 'Ether' ? '' : data.address0,
         name: data.symbol0 === 'Ether' ? config.chain.currency.symbol || null : data.symbol0,
-        type: 'EGC-20',
+        type: 'ERC-20',
         symbol: null,
         icon_url: null,
       };
       const token1 = {
         address: data.symbol1 === 'Ether' ? '' : data.address1,
         name: data.symbol1 === 'Ether' ? config.chain.currency.symbol || null : data.symbol1,
-        type: 'EGC-20',
+        type: 'ERC-20',
         symbol: null,
         icon_url: null,
       };
@@ -103,7 +99,7 @@ const TxDetailsAction = ({ action }: Props) => {
       const token = {
         address: data.address,
         name: data.name,
-        type: 'EGC-20',
+        type: 'ERC-20',
         symbol: null,
         icon_url: null,
       };
@@ -123,7 +119,7 @@ const TxDetailsAction = ({ action }: Props) => {
             <chakra.span color="text_secondary">to</chakra.span>
 
             <AddressEntity
-              address={ { hash: data.to } }
+              address={{ hash: data.to }}
               truncation="constant"
               noIcon
               noCopy

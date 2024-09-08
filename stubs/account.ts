@@ -1,6 +1,6 @@
-import type { AddressTag, ApiKey, CustomAbi, TokenInfoApplication, TransactionTag, VerifiedAddress, WatchlistAddress } from 'types/api/account';
+import type { AddressTag, TransactionTag, ApiKey, CustomAbi, VerifiedAddress, TokenInfoApplication, WatchlistAddress } from 'types/api/account';
 
-import { ADDRESS_HASH, ADDRESS_PARAMS } from './addressParams';
+import { ADDRESS_PARAMS, ADDRESS_HASH } from './addressParams';
 import { TX_HASH } from './tx';
 
 export const PRIVATE_TAG_ADDRESS: AddressTag = {
@@ -27,15 +27,15 @@ export const WATCH_LIST_ITEM_WITH_TOKEN_INFO: WatchlistAddress = {
     email: false,
   },
   notification_settings: {
-    'EGC-20': {
+    'ERC-20': {
       incoming: true,
       outcoming: true,
     },
-    'EGC-721': {
+    'ERC-721': {
       incoming: true,
       outcoming: true,
     },
-    'EGC-404': {
+    'ERC-404': {
       incoming: true,
       outcoming: true,
     },

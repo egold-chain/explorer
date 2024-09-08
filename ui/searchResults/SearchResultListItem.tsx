@@ -1,4 +1,4 @@
-import { Box, chakra, Flex, Grid, Image, Skeleton, Tag, Text, useColorMode } from '@chakra-ui/react';
+import { chakra, Flex, Grid, Image, Box, Text, Skeleton, useColorMode, Tag } from '@chakra-ui/react';
 import React from 'react';
 import xss from 'xss';
 
@@ -53,7 +53,7 @@ const SearchResultListItem = ({ data, searchTerm, isLoading }: Props) => {
 
         return (
           <Flex alignItems="center" overflow="hidden">
-            <TokenEntity.Icon token={ { ...data, type: data.token_type } } isLoading={ isLoading }/>
+            <TokenEntity.Icon token={{ ...data, type: data.token_type }} isLoading={ isLoading }/>
             <LinkInternal
               href={ route({ pathname: '/token/[hash]', query: { hash: data.address } }) }
               fontWeight={ 700 }
@@ -64,7 +64,7 @@ const SearchResultListItem = ({ data, searchTerm, isLoading }: Props) => {
             >
               <Skeleton
                 isLoaded={ !isLoading }
-                dangerouslySetInnerHTML={ { __html: highlightText(name, searchTerm) } }
+                dangerouslySetInnerHTML={{ __html: highlightText(name, searchTerm) }}
                 whiteSpace="nowrap"
                 overflow="hidden"
                 textOverflow="ellipsis"
@@ -118,14 +118,14 @@ const SearchResultListItem = ({ data, searchTerm, isLoading }: Props) => {
               isLoading={ isLoading }
               onClick={ handleLinkClick }
             >
-              <span dangerouslySetInnerHTML={ { __html: highlightText(data.name, searchTerm) } }/>
+              <span dangerouslySetInnerHTML={{ __html: highlightText(data.name, searchTerm) }}/>
             </LinkInternal>
           </Flex>
         );
       }
 
       case 'app': {
-        const title = <span dangerouslySetInnerHTML={ { __html: highlightText(data.app.title, searchTerm) } }/>;
+        const title = <span dangerouslySetInnerHTML={{ __html: highlightText(data.app.title, searchTerm) }}/>;
         return (
           <Flex alignItems="center">
             <Image
@@ -266,7 +266,7 @@ const SearchResultListItem = ({ data, searchTerm, isLoading }: Props) => {
             >
               <Skeleton
                 isLoaded={ !isLoading }
-                dangerouslySetInnerHTML={ { __html: highlightText(data.ens_info.name, searchTerm) } }
+                dangerouslySetInnerHTML={{ __html: highlightText(data.ens_info.name, searchTerm) }}
                 whiteSpace="nowrap"
                 overflow="hidden"
                 textOverflow="ellipsis"
@@ -282,7 +282,7 @@ const SearchResultListItem = ({ data, searchTerm, isLoading }: Props) => {
     switch (data.type) {
       case 'token': {
         const templateCols = `1fr
-        ${ (data.token_type === 'EGC-20' && data.exchange_rate) || (data.token_type !== 'EGC-20' && data.total_supply) ? ' auto' : '' }`;
+        ${ (data.token_type === 'ERC-20' && data.exchange_rate) || (data.token_type !== 'ERC-20' && data.total_supply) ? ' auto' : '' }`;
 
         return (
           <Grid templateColumns={ templateCols } alignItems="center" gap={ 2 }>
@@ -293,8 +293,8 @@ const SearchResultListItem = ({ data, searchTerm, isLoading }: Props) => {
               { data.is_smart_contract_verified && <IconSvg name="status/success" boxSize="14px" color="green.500" ml={ 1 } flexShrink={ 0 }/> }
             </Skeleton>
             <Skeleton isLoaded={ !isLoading } overflow="hidden" whiteSpace="nowrap" textOverflow="ellipsis" fontWeight={ 700 }>
-              { data.token_type === 'EGC-20' && data.exchange_rate && `$${ Number(data.exchange_rate).toLocaleString() }` }
-              { data.token_type !== 'EGC-20' && data.total_supply && `Items ${ Number(data.total_supply).toLocaleString() }` }
+              { data.token_type === 'ERC-20' && data.exchange_rate && `$${ Number(data.exchange_rate).toLocaleString() }` }
+              { data.token_type !== 'ERC-20' && data.total_supply && `Items ${ Number(data.total_supply).toLocaleString() }` }
             </Skeleton>
           </Grid>
         );
@@ -344,11 +344,11 @@ const SearchResultListItem = ({ data, searchTerm, isLoading }: Props) => {
           <Text
             overflow="hidden"
             textOverflow="ellipsis"
-            sx={ {
+            sx={{
               display: '-webkit-box',
               '-webkit-box-orient': 'vertical',
               '-webkit-line-clamp': '3',
-            } }
+            }}
           >
             { data.app.description }
           </Text>
@@ -361,22 +361,22 @@ const SearchResultListItem = ({ data, searchTerm, isLoading }: Props) => {
         const expiresText = data.ens_info?.expiry_date ? ` (expires ${ dayjs(data.ens_info.expiry_date).fromNow() })` : '';
 
         return addressName ? (
-            <Flex alignItems="center">
-              <Text
-                overflow="hidden"
-                whiteSpace="nowrap"
-                textOverflow="ellipsis"
-              >
-                <span dangerouslySetInnerHTML={ { __html: shouldHighlightHash ? xss(addressName) : highlightText(addressName, searchTerm) } }/>
-                { data.ens_info && (
-                  data.ens_info.names_count > 1 ?
-                    <chakra.span color="text_secondary"> ({ data.ens_info.names_count > 39 ? '40+' : `+${ data.ens_info.names_count - 1 }` })</chakra.span> :
-                    <chakra.span color="text_secondary">{ expiresText }</chakra.span>
-                ) }
-              </Text>
-              { data.certified && <ContractCertifiedLabel iconSize={ 5 } boxSize={ 5 } ml={ 1 }/> }
-            </Flex>
-          ) :
+          <Flex alignItems="center">
+            <Text
+              overflow="hidden"
+              whiteSpace="nowrap"
+              textOverflow="ellipsis"
+            >
+              <span dangerouslySetInnerHTML={{ __html: shouldHighlightHash ? xss(addressName) : highlightText(addressName, searchTerm) }}/>
+              { data.ens_info && (
+                data.ens_info.names_count > 1 ?
+                  <chakra.span color="text_secondary"> ({ data.ens_info.names_count > 39 ? '40+' : `+${ data.ens_info.names_count - 1 }` })</chakra.span> :
+                  <chakra.span color="text_secondary">{ expiresText }</chakra.span>
+              ) }
+            </Text>
+            { data.certified && <ContractCertifiedLabel iconSize={ 5 } boxSize={ 5 } ml={ 1 }/> }
+          </Flex>
+        ) :
           null;
       }
       case 'ens_domain': {

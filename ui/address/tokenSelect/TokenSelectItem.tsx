@@ -19,7 +19,7 @@ const TokenSelectItem = ({ data }: Props) => {
 
   const secondRow = (() => {
     switch (data.token.type) {
-      case 'EGC-20': {
+      case 'ERC-20': {
         const tokenDecimals = Number(data.token.decimals) || 18;
         const text = `${ BigNumber(data.value).dividedBy(10 ** tokenDecimals).dp(8).toFormat() } ${ data.token.symbol || '' }`;
 
@@ -30,11 +30,11 @@ const TokenSelectItem = ({ data }: Props) => {
           </>
         );
       }
-      case 'EGC-721': {
+      case 'ERC-721': {
         const text = `${ BigNumber(data.value).toFormat() } ${ data.token.symbol || '' }`;
         return <TruncatedValue value={ text }/>;
       }
-      case 'EGC-1155': {
+      case 'ERC-1155': {
         return (
           <>
             <chakra.span textOverflow="ellipsis" overflow="hidden" mr={ 6 }>
@@ -46,7 +46,7 @@ const TokenSelectItem = ({ data }: Props) => {
           </>
         );
       }
-      case 'EGC-404': {
+      case 'ERC-404': {
         return (
           <>
             { data.token_id !== null && (
@@ -79,9 +79,9 @@ const TokenSelectItem = ({ data }: Props) => {
       rowGap={ 2 }
       borderColor="divider"
       borderBottomWidth="1px"
-      _hover={ {
+      _hover={{
         bgColor: useColorModeValue('blue.50', 'gray.800'),
-      } }
+      }}
       color="unset"
       fontSize="sm"
       href={ url }
