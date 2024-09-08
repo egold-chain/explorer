@@ -101,6 +101,10 @@ export const WalletMenuDesktop = ({
     buttonStyles = {
       color: 'white',
       borderColor: 'white',
+      _hover: {
+        color: 'white',
+        borderColor: 'white',
+      },
     };
   } else {
     buttonStyles = {
