@@ -33,48 +33,48 @@ const Footer = () => {
   const logoColor = useColorModeValue('blue.600', 'white');
 
   const BLOCKSCOUT_LINKS = [
-    // {
-    //   icon: 'edit' as const,
-    //   iconSize: '16px',
-    //   text: 'Submit an issue',
-    //   url: issueUrl,
-    // },
-    // {
-    //   icon: 'social/canny' as const,
-    //   iconSize: '20px',
-    //   text: 'Feature request',
-    //   url: 'https://blockscout.canny.io/feature-requests',
-    // },
-    // {
-    //   icon: 'social/git' as const,
-    //   iconSize: '18px',
-    //   text: 'Contribute',
-    //   url: 'https://github.com/blockscout/blockscout',
-    // },
-    // {
-    //   icon: 'social/twitter' as const,
-    //   iconSize: '18px',
-    //   text: 'X (ex-Twitter)',
-    //   url: 'https://www.twitter.com/blockscoutcom',
-    // },
-    // {
-    //   icon: 'social/discord' as const,
-    //   iconSize: '24px',
-    //   text: 'Discord',
-    //   url: 'https://discord.gg/blockscout',
-    // },
-    // {
-    //   icon: 'brands/blockscout' as const,
-    //   iconSize: '18px',
-    //   text: 'All chains',
-    //   url: 'https://www.blockscout.com/chains-and-projects',
-    // },
-    // {
-    //   icon: 'donate' as const,
-    //   iconSize: '20px',
-    //   text: 'Donate',
-    //   url: 'https://github.com/sponsors/blockscout',
-    // },
+    {
+      icon: 'edit' as const,
+      iconSize: '16px',
+      text: 'Submit an issue',
+      url: issueUrl,
+    },
+    {
+      icon: 'social/canny' as const,
+      iconSize: '20px',
+      text: 'Feature request',
+      url: 'https://blockscout.canny.io/feature-requests',
+    },
+    {
+      icon: 'social/git' as const,
+      iconSize: '18px',
+      text: 'Contribute',
+      url: 'https://github.com/blockscout/blockscout',
+    },
+    {
+      icon: 'social/twitter' as const,
+      iconSize: '18px',
+      text: 'X (ex-Twitter)',
+      url: 'https://www.twitter.com/blockscoutcom',
+    },
+    {
+      icon: 'social/discord' as const,
+      iconSize: '24px',
+      text: 'Discord',
+      url: 'https://discord.gg/blockscout',
+    },
+    {
+      icon: 'brands/blockscout' as const,
+      iconSize: '18px',
+      text: 'All chains',
+      url: 'https://www.blockscout.com/chains-and-projects',
+    },
+    {
+      icon: 'donate' as const,
+      iconSize: '20px',
+      text: 'Donate',
+      url: 'https://github.com/sponsors/blockscout',
+    },
   ];
 
   const frontendLink = (() => {
@@ -108,8 +108,8 @@ const Footer = () => {
         flexWrap="wrap"
         columnGap={ 8 }
         rowGap={ 6 }
-        mb={ { base: 5, lg: 10 } }
-        _empty={ { display: 'none' } }
+        mb={{ base: 5, lg: 10 }}
+        _empty={{ display: 'none' }}
       >
         { !config.UI.indexingAlert.intTxs.isHidden && <IntTxsIndexingStatus/> }
         <NetworkAddToWallet/>
@@ -163,14 +163,14 @@ const Footer = () => {
           </div>
 
           <Grid
-            gap={ { base: 6, lg: colNum === MAX_LINKS_COLUMNS + 1 ? 2 : 8, xl: 12 } }
-            gridTemplateColumns={ {
+            gap={{ base: 6, lg: colNum === MAX_LINKS_COLUMNS + 1 ? 2 : 8, xl: 12 }}
+            gridTemplateColumns={{
               base: 'repeat(auto-fill, 160px)',
               lg: `repeat(${ colNum }, 135px)`,
               xl: `repeat(${ colNum }, 160px)`,
-            } }
-            justifyContent={ { lg: 'flex-end' } }
-            mt={ { base: 8, lg: 0 } }
+            }}
+            justifyContent={{ lg: 'flex-end' }}
+            mt={{ base: 8, lg: 0 }}
           >
             {
               ([
@@ -197,36 +197,36 @@ const Footer = () => {
     <Box { ...containerProps }>
       <Grid
         { ...contentProps }
-        gridTemplateAreas={ {
+        gridTemplateAreas={{
           lg: `
           "network links-top"
           "info links-bottom"
         `,
-        } }
+        }}
       >
 
         { renderNetworkInfo({ lg: 'network' }) }
         { renderProjectInfo({ lg: 'info' }) }
 
         <Grid
-          gridArea={ { lg: 'links-bottom' } }
+          gridArea={{ lg: 'links-bottom' }}
           gap={ 1 }
-          gridTemplateColumns={ {
+          gridTemplateColumns={{
             base: 'repeat(auto-fill, 160px)',
             lg: 'repeat(3, 160px)',
             xl: 'repeat(4, 160px)',
-          } }
-          gridTemplateRows={ {
+          }}
+          gridTemplateRows={{
             base: 'auto',
             lg: 'repeat(3, auto)',
             xl: 'repeat(2, auto)',
-          } }
-          gridAutoFlow={ { base: 'row', lg: 'column' } }
+          }}
+          gridAutoFlow={{ base: 'row', lg: 'column' }}
           alignContent="start"
-          justifyContent={ { lg: 'flex-end' } }
-          mt={ { base: 8, lg: 0 } }
+          justifyContent={{ lg: 'flex-end' }}
+          mt={{ base: 8, lg: 0 }}
         >
-          { BLOCKSCOUT_LINKS.map(link => <FooterLinkItem { ...link } key={ link.text }/>) }
+          { /*{ BLOCKSCOUT_LINKS.map(link => <FooterLinkItem { ...link } key={ link.text }/>) }*/ }
         </Grid>
       </Grid>
     </Box>

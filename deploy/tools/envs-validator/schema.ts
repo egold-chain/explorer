@@ -94,7 +94,7 @@ const marketplaceAppSchema: yup.ObjectSchema<MarketplaceAppOverview> =
   });
 
 const issueSeverityDistributionSchema: yup.ObjectSchema<
-  MarketplaceAppSecurityReport['overallInfo']['issueSeverityDistribution']
+MarketplaceAppSecurityReport['overallInfo']['issueSeverityDistribution']
 > = yup.object({
   critical: yup.number().required(),
   gas: yup.number().required(),
@@ -105,7 +105,7 @@ const issueSeverityDistributionSchema: yup.ObjectSchema<
 });
 
 const solidityscanReportSchema: yup.ObjectSchema<
-  MarketplaceAppSecurityReport['contractsData'][number]['solidityScanReport']
+MarketplaceAppSecurityReport['contractsData'][number]['solidityScanReport']
 > = yup.object({
   contractname: yup.string().required(),
   scan_status: yup.string().required(),
@@ -123,7 +123,7 @@ const solidityscanReportSchema: yup.ObjectSchema<
 });
 
 const contractDataSchema: yup.ObjectSchema<
-  MarketplaceAppSecurityReport['contractsData'][number]
+MarketplaceAppSecurityReport['contractsData'][number]
 > = yup.object({
   address: yup.string().required(),
   isVerified: yup.boolean().required(),
