@@ -1,7 +1,7 @@
 import { theme } from '@chakra-ui/react';
 
-export const BODY_TYPEFACE = 'Quantify';
-export const HEADING_TYPEFACE = 'Quantify';
+export const BODY_TYPEFACE = 'Poppins';
+export const HEADING_TYPEFACE = 'Poppins';
 
 const typography = {
   fonts: {
