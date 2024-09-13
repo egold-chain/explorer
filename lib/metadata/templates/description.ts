@@ -3,7 +3,7 @@ import type { Route } from 'nextjs-routes';
 
 // equal og:description
 // eslint-disable-next-line max-len
-const DEFAULT_TEMPLATE = 'Blockscout is the #1 open-source blockchain explorer available today. 100+ chains and counting rely on Blockscout data availability, APIs, and ecosystem tools to support their networks.';
+const DEFAULT_TEMPLATE = 'eGoldchain is a secure, Proof of Authority (PoA) blockchain platform, offering fast, scalable solutions for digital currency transactions and the tokenization of assets, making it the ideal choice for businesses looking to integrate blockchain technology.';
 
 // FIXME all page descriptions will be updated later
 const TEMPLATE_MAP: Record<Route['pathname'], string> = {
